@@ -12,6 +12,9 @@
       "cache": false,
       "persistent": true
     },
+    "link-pkg": {
+      "cache": false
+    },
     "clean": {
       "cache": false
     }

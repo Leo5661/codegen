@@ -34,3 +34,7 @@ yarn-error.log*
 
 # ui
 dist/
+
+#Ide
+.vscode
+settings.json
