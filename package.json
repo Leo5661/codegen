@@ -1,11 +1,23 @@
 {
+  "name": "codegen",
+  "license": "MIT",
   "private": true,
+  "author": {
+    "name": "Rahul Singh",
+    "url": "https://x.com/Leo_5661"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
+    "build:cli": "turbo --filter=codegen-cli build",
+    "dev:cli": "turbo --filter=codegen-cli dev",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
+    "pub:beta": "",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
@@ -13,9 +25,8 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "turbo": "^2.1.2"
   },
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@9.10.0",
   "engines": {
     "node": ">=18"
-  },
-  "name": "with-tailwind"
+  }
 }

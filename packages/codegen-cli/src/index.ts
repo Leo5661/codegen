@@ -1,15 +1,10 @@
 #!/usr/bin/env node
 
 import { Command } from "commander"
-import {Header} from "@/src/header"
 import {getPackageInfo} from "@/src/utits/get-package-info"
-
-
-process.on("SIGINT", () => process.exit(0))
-process.on("SIGTERM", () => process.exit(0))
+import { init } from "./commands/init";
 
 async function main() {
-    Header();
 
     const packageInfo = await getPackageInfo()
 
@@ -21,6 +16,8 @@ async function main() {
         "-v, --version",
         "Display the current version",
     )
+
+    program.addCommand(init)
 
     program.parse()
 }
