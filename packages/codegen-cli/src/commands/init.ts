@@ -36,7 +36,7 @@ export async function runInit() {
             ,
             framework: ({results}) => 
                 promt.select({
-                    message: `Which framework do you want to use for ${results.projectName}?`,
+                    message: `Which framework do you want to use for ${pc.italic(pc.cyan(results.projectName))}?`,
                     initialValue: 'Nextjs',
                     options: [
                         {value: pc.blue('Nextjs'), label: pc.blue('Next.js'), hint: "Next 14+"},
@@ -48,7 +48,7 @@ export async function runInit() {
             ,
             language: ({results}) => 
                 promt.select({
-                    message: `Which language do you want to use for ${results.projectName}?`,
+                    message: `Which language do you want to use for ${pc.italic(pc.cyan(results.projectName))}?`,
                     initialValue: 'TS',
                     options: [
                         {value: pc.blue('TS'), label: pc.blue('TypeScript')},
@@ -57,12 +57,35 @@ export async function runInit() {
                 })
             ,
 
+            style: ({results}) => 
+                promt.select({
+                    message: `What you want for style?`,
+                    initialValue: 'CSS',
+                    options: [
+                        {value: pc.blue('CSS'), label: pc.blue('CSS')},
+                        {value: pc.yellow('SCSS'), label: pc.yellow('SCSS')},
+                        {value: pc.blueBright('Tailwind'), label: pc.blueBright('TailwindCSS')},
+                    ]
+                })
+            ,
+            database: ({results}) => 
+                promt.select({
+                    message: `What you want for database?`,
+                    initialValue: 'MongoDB',
+                    options: [
+                        {value: pc.green('MongoDB'), label: pc.green('MongoDB')},
+                        {value: pc.blueBright('Prisma'), label: pc.blueBright('Prisma')},
+                    ]
+                })
+            ,
             onConfirm: ({results}) => 
                     promt.confirm({
                         message: `Confirm to create project?
                                 \t Project Name: ${pc.cyan(results.projectName as string)}
                                 \t Framework: ${pc.cyan(results.framework as string)}
-                                \tLanguage: ${pc.cyan(results.language as string)}
+                                \t Language: ${pc.cyan(results.language as string)}
+                                \t Style: ${pc.cyan(results.style as string)}
+                                \t Database: ${pc.cyan(results.database as string)}
                                 `,
                         initialValue: true,
                     })
