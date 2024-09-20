@@ -12,6 +12,10 @@
     "inlineSources": false,
     "isolatedModules": true,
     "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "moduleResolution": "Bundler",
     "noUnusedLocals": false,
     "noUnusedParameters": false,

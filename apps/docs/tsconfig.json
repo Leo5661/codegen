@@ -1,8 +1,25 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "@codegen/typescript-config/nextjs.json",
   "compilerOptions": {
-    "plugins": [{ "name": "next" }]
+    "baseUrl": ".",
+      "paths": {
+        "@/*": ["./*"]
+      },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/page.mdx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

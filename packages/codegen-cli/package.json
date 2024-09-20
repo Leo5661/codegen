@@ -54,8 +54,8 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
-        "@repo/eslint-config": "workspace:*",
-        "@repo/typescript-config": "workspace:*",
+        "@codegen/eslint-config": "workspace:*",
+        "@codegen/typescript-config": "workspace:*",
         "@types/figlet": "^1.5.8",
         "@types/fs-extra": "^11.0.4", 
         "@types/node": "^20.11.24",

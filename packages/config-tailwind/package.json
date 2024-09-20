@@ -1,12 +1,14 @@
 {
-  "name": "@repo/tailwind-config",
+  "name": "@codegen/tailwind-config",
   "version": "0.0.0",
   "private": true,
   "exports": {
     ".": "./tailwind.config.ts"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "tailwindcss": "^3.4.1"
+    "@codegen/typescript-config": "workspace:*",
+    "fumadocs-ui": "^13.4.10",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7"
   }
 }
