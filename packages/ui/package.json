@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@codegen/eslint-config": "workspace:*",
-
     "@codegen/typescript-config": "workspace:*",
     "@types/react": "^18.2.61",
     "autoprefixer": "^10.4.18",
