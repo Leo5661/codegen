@@ -11,7 +11,7 @@ const config: Pick<Config, "content" | "presets" > = {
     './content/**/*.mdx',
     './src/app/**/*.tsx', 
   ],
-  presets: [ sharedConfig, createPreset() ],
+  presets: [createPreset()],
 };
 
 export default config;

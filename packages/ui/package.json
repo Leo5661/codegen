@@ -9,9 +9,8 @@
     "dist"
   ],
   "exports": {
-    "./custom-styles.css": "./dist/index.css",
+    "./index.css": "./dist/index.css",
     "./tailwind-config": "./tailwind.config.ts",
-    "./globals.css": "./src/globals.css",
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
@@ -19,9 +18,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
+    "build": "tailwindcss -i ./src/globals.css -o ./dist/index.css",
     "lint": "eslint src/",
-    "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
+    "dev": "tailwindcss -i ./src/globals.css -o ./dist/index.css --watch",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {

@@ -1,5 +1,11 @@
 {
   "extends": "@codegen/typescript-config/react-library.json",
-  "include": ["."],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+  },
+  "include": [".", "../../apps/docs/src/components/doc-nav-logo.tsx"],
   "exclude": ["dist", "build", "node_modules"]
 }

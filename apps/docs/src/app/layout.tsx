@@ -1,4 +1,3 @@
-import "@codegen/ui/custom-styles.css"
 import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import type { Metadata } from "next";
@@ -19,7 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jetBrainsMono.className}>
-        <RootProvider>
+        <RootProvider
+          theme={{
+            enabled: true,
+            attribute: "class",
+            defaultTheme: "dark",
+          }}
+        >
           {children}
         </RootProvider>
         </body>

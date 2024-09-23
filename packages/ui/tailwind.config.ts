@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Omit<Config, "content"> = {
+  // prefix: "ui-",
   content: ["./src/**/*.tsx"],
   darkMode: ["class"],
   theme: {
