@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "lint": "turbo lint",
-    "build": "turbo build --outputs public",
+    "build": "turbo build --output public",
     "clean": "turbo clean",
     "type-check": "turbo type-check",
     "lint:cli": "turbo lint --filter=codegen-cli",
