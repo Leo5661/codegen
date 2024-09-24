@@ -11,22 +11,24 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo build",
-    "build:cli": "turbo --filter=codegen-cli build",
-    "dev:cli": "turbo --filter=codegen-cli dev",
-    "dev:doc": "turbo --filter=docs dev",
     "lint": "turbo lint",
-    "type-check": "turbo type-check",
+    "build": "turbo build",
     "clean": "turbo clean",
-    "pub:beta": "",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "type-check": "turbo type-check",
+    "lint:cli": "turbo lint --filter=codegen-cli^...",
+    "build:cli": "turbo --filter=codegen-cli^... build",
+    "dev:doc": "turbo --filter=docs dev",
+    "dev:cli": "turbo --filter=codegen-cli^... dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "pub:cli": "turbo lint build --filter=codegen-cli^... && changeset version && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "turbo": "^2.1.2"
   },
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
   "engines": {
     "node": ">=18"
   }

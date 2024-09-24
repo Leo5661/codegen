@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "Node CLI to create base structure with all configurations for fast development",
     "publishConfig": {
+        "provenance": true,
         "access": "public"
     },
     "type": "module",
@@ -41,7 +42,8 @@
         "typecheck": "tsc --noEmit",
         "dev": "tsup --watch",
         "build": "tsup",
-        "lint": "tsc"
+        "lint": "tsc",
+        "pub:cli": "pnpm build "
     },
     "dependencies": {
         "@clack/prompts": "^0.7.0",
@@ -57,7 +59,7 @@
         "@codegen/eslint-config": "workspace:*",
         "@codegen/typescript-config": "workspace:*",
         "@types/figlet": "^1.5.8",
-        "@types/fs-extra": "^11.0.4", 
+        "@types/fs-extra": "^11.0.4",
         "@types/node": "^20.11.24",
         "rimraf": "^6.0.1",
         "tsup": "^6.3.0",

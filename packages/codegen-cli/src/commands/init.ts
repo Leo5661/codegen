@@ -5,6 +5,18 @@ import pc from "picocolors"
 import { z } from "zod";
 import { Header } from "@/src/header";
 import { isValidPackageName } from "../utits/is-valid-package-name";
+import { Framework, templates } from "../utits/template";
+
+export type PromtConfig = {
+    projectName: string;
+    framework: Framework;
+    variant: string;
+    style: string;
+    isORM:  boolean;
+    orm: string;
+    onConfirm: boolean;
+}
+
 
 // TODO add options in future
 // const initOptionSchema = z.object({
@@ -15,15 +27,31 @@ export const init = new Command()
     .name("init")
     .description("Initialize a new project and install dependencies")
     .action(async () => {
+        Header();
         runInit();
     })
-   
 
+const frameworkList = () => { 
+    return templates.map((framework) => {
+        const colorFn = framework.color
+        return {
+            value: framework.name, label: colorFn(framework.tag)
+        } 
+    })
+}
+
+
+const variantList = (framework: string) => {
+   return templates.find((f) => f.name === framework)?.variant.map((variant) => ({value: variant.name, label: variant.color(variant.tag)})) || []
+}
+
+const isBackendFramework = (framework: string) => {
+    return templates.find((f) => f.name === framework)?.isBackend
+}
 export async function runInit() {
-    Header();
     promt.intro(pc.bgCyan(pc.black("CodeGen Initializer")))
 
-    const project = await promt.group(
+    const promtConfig = await promt.group(
         {
             projectName: () => 
                 promt.text({
@@ -38,27 +66,19 @@ export async function runInit() {
                 promt.select({
                     message: `🛠️ Which framework do you want to use for ${pc.italic(pc.cyan(results.projectName))}?`,
                     initialValue: 'Nextjs',
-                    options: [
-                        {value: 'Nextjs', label: pc.blue('Next.js'), hint: "Next 14+"},
-                        {value: 'React', label: pc.blueBright('React.js'), hint: "Vite Based"},
-                        {value: 'Svelte', label: pc.redBright('Svelte.js'), hint: "Vite Based"},
-                        {value: 'Node', label: pc.green('Node.js'), hint: "Node with express"},
-                    ]
+                    options: frameworkList()
                 })
             ,
-            language: ({results}) =>  
+            variant: ({results}) =>  
                 promt.select({
-                    message: `🔤 Which language do you want to use for ${pc.italic(pc.cyan(results.projectName))}?`,
+                    message: `🔤 Choose variant for ${pc.italic(pc.cyan(results.projectName))}?`,
                     initialValue: 'TS',
-                    options: [
-                        {value: 'TS', label: pc.blue('TypeScript')},
-                        {value: 'JS', label: pc.yellow('JavaScript')},
-                    ]
+                    options: variantList(results.framework as string)
                 })
             ,
 
             style: ({results}) => {
-                if(results.framework !== 'Node') {
+                if(!isBackendFramework(results.framework as string)) {
                     return promt.select({
                            message: `🎨 What you want for style?`,
                            initialValue: 'CSS',
@@ -71,10 +91,7 @@ export async function runInit() {
                     }
             },
             isORM: ({results}) => {
-                    if(    results.framework === 'Node' 
-                        || results.framework === 'Nextjs'
-                        || results.framework === 'Svelte'
-                    ) {
+                    if(isBackendFramework(results.framework as string)) {
                         return promt.confirm({
                             message: `🤔 Do you want ${pc.cyan("ORM")} for database management?`,
                             initialValue: true,
@@ -99,7 +116,7 @@ export async function runInit() {
                         message: `🤔 Confirm to create project?
                                 \t Project Name: ${pc.cyan(results.projectName as string)}
                                 \t Framework: ${pc.cyan(results.framework as string)}
-                                \t Language: ${pc.cyan(results.language as string)}
+                                \t Variant: ${pc.cyan(results.variant as string)}
                                 `,
                         initialValue: true,
                     })
@@ -112,17 +129,17 @@ export async function runInit() {
         }
     )
 
-    if(project.onConfirm){
+    if(promtConfig.onConfirm){
         const spinner = promt.spinner()
         spinner.start("☕ Grab a coffee and relax, Creating project...")
-        await setTimeout(5000)
+        
         spinner.stop()
     } else {
         promt.cancel("🫡 Ok, I'll run it later. Bye!")
         process.exit(0)
     }
 
-    let nextSteps = `cd ${project.projectName}        \n${project.onConfirm ? '' : 'pnpm install\n'}pnpm dev`;
+    let nextSteps = `cd ${promtConfig.projectName}        \n${promtConfig.onConfirm ? '' : 'pnpm install\n'}pnpm dev`;
 
 	promt.note(nextSteps, '🎉 Next steps.');
 
