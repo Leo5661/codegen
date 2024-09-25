@@ -1,0 +1,5 @@
+{
+    "name": "Guid",
+    "root": true,
+    "pages": ["introduction", "--- Guid ---", "installation", "cli"]
+}

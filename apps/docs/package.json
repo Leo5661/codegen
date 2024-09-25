@@ -14,6 +14,7 @@
     "@codegen/ui": "workspace:*",
     "@types/mdx": "^2.0.13",
     "fumadocs-core": "^13.4.10",
+    "fumadocs-docgen": "^1.2.0",
     "fumadocs-mdx": "^10.0.2",
     "fumadocs-ui": "^13.4.10",
     "next": "^14.2.3",

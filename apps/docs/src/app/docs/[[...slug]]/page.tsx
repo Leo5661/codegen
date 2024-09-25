@@ -8,6 +8,7 @@ import {
 } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
  
 export default async function Page({
   params,
@@ -25,11 +26,16 @@ console.log(page);
   const MDX = page.data.body;
  
   return (
-    <DocsPage toc={page.data.toc} tableOfContent={{style: 'clerk'}} tableOfContentPopover={{style: 'clerk'}} full={page.data.full}>
+    <DocsPage 
+      toc={page.data.toc} 
+      tableOfContent={{style: 'clerk'}} 
+      tableOfContentPopover={{style: 'clerk'}} 
+      full={page.data.full}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents }} />
+        <MDX components={{Tab, Tabs, ...defaultMdxComponents }} />
       </DocsBody>
     </DocsPage>
   );

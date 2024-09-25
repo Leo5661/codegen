@@ -1,3 +1,4 @@
+import { Banner } from "fumadocs-ui/components/banner";
 import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import type { Metadata } from "next";
@@ -25,6 +26,7 @@ export default function RootLayout({
             defaultTheme: "dark",
           }}
         >
+          <Banner  variant="rainbow" changeLayout={true}>CodeGen Docs are under development and will be available soon</Banner>
           {children}
         </RootProvider>
         </body>
