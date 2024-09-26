@@ -48,7 +48,7 @@ export const templates: Framework[] = [
         isBackend: false,
         variant: [
             {
-                name: 'default-next',
+                name: 'ts',
                 tag: 'Default Next.js',
                 color: blueBright
             }
@@ -61,12 +61,12 @@ export const templates: Framework[] = [
         isBackend: false,
         variant: [
             {
-                name: 'react-ts',
+                name: 'ts',
                 tag: 'TypeScript',
                 color: blueBright
             },
             {
-                name: 'react-js',
+                name: 'js',
                 tag: 'JavaScript',
                 color: yellowBright
             }
@@ -79,12 +79,12 @@ export const templates: Framework[] = [
         isBackend: true,
         variant: [
             {
-                name: "node-ts",
+                name: "ts",
                 tag: "TypeScript",
                 color: blueBright
             },
             {
-                name: "node-js",
+                name: "js",
                 tag: "JavaScript",
                 color: yellowBright
             }

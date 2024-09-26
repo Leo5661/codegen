@@ -6,6 +6,5 @@ export const baseOptions: HomeLayoutProps = {
   nav: {
     transparentMode: "top",
     title: <DocNavLogo />,
-    children: "Children",
   },
 };

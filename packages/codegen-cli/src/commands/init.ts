@@ -6,6 +6,7 @@ import { z } from "zod";
 import { Header } from "@/src/header";
 import { isValidPackageName } from "../utits/is-valid-package-name";
 import { Framework, templates } from "../utits/template";
+import { generatePackage } from "../scripts/package-generator";
 
 export type PromtConfig = {
     projectName: string;
@@ -127,21 +128,17 @@ export async function runInit() {
                 process.exit(0)
             }
         }
-    )
+    ) as PromtConfig
 
     if(promtConfig.onConfirm){
         const spinner = promt.spinner()
         spinner.start("☕ Grab a coffee and relax, Creating project...")
-        
+        await generatePackage(promtConfig)
         spinner.stop()
     } else {
-        promt.cancel("🫡 Ok, I'll run it later. Bye!")
+        await generatePackage(promtConfig)
         process.exit(0)
     }
-
-    let nextSteps = `cd ${promtConfig.projectName}        \n${promtConfig.onConfirm ? '' : 'pnpm install\n'}pnpm dev`;
-
-	promt.note(nextSteps, '🎉 Next steps.');
 
 	promt.outro(`⚠️ Problems? ${pc.underline(pc.cyan('https://github.com/Leo5661/codegen/issues'))}`);
 }
