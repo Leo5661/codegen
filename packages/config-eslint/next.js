@@ -19,6 +19,7 @@ module.exports = {
       "@vercel/style-guide/eslint/browser",
       "@vercel/style-guide/eslint/react",
       "@vercel/style-guide/eslint/next",
+      "prettier"
     ].map(require.resolve),
     "turbo",
   ],

@@ -7,7 +7,7 @@
  * @module template
  */
 
-import colors from "picocolors"
+import colors from "picocolors";
 
 const {
   blue,
@@ -22,72 +22,96 @@ const {
   yellow,
   cyanBright,
   yellowBright,
-  magentaBright
-} = colors
+  magentaBright,
+} = colors;
 
-export type ColorFunction = (str: string | number) => string
+export type ColorFunction = (str: string | number) => string;
 export type Framework = {
-    name: string
-    tag: string
-    color: ColorFunction
-    isBackend?: true | false 
-    variant: FrameworkVarient[]
-}
+  name: string;
+  tag: string;
+  color: ColorFunction;
+  type: "frontend" | "backend" | "fullstack";
+  variant: FrameworkVariant[];
+  style?: FrameworkStyle[];
+};
 
-export type FrameworkVarient = {
-    name: string
-    tag: string
-    color: ColorFunction
-}
+export type FrameworkVariant = {
+  name: string;
+  tag: string;
+  color: ColorFunction;
+};
+
+export type FrameworkStyle = {
+  name: string;
+  tag: string;
+  color: ColorFunction;
+};
 
 export const templates: Framework[] = [
-    {
-        name: 'next',
-        tag: 'Next14',
+  {
+    name: "next",
+    tag: "Next14",
+    color: blueBright,
+    type: "fullstack",
+    variant: [
+      {
+        name: "ts",
+        tag: "Default Next.js",
         color: blueBright,
-        isBackend: false,
-        variant: [
-            {
-                name: 'ts',
-                tag: 'Default Next.js',
-                color: blueBright
-            }
-        ]
-    },
-    {
-        name: 'react',
-        tag: 'React',
-        color: cyanBright,
-        isBackend: false,
-        variant: [
-            {
-                name: 'ts',
-                tag: 'TypeScript',
-                color: blueBright
-            },
-            {
-                name: 'js',
-                tag: 'JavaScript',
-                color: yellowBright
-            }
-        ]
-    },
-    {
-        name: "node",
-        tag: "Node",
-        color: green,
-        isBackend: true,
-        variant: [
-            {
-                name: "ts",
-                tag: "TypeScript",
-                color: blueBright
-            },
-            {
-                name: "js",
-                tag: "JavaScript",
-                color: yellowBright
-            }
-        ]
-    }
-]
+      },
+    ],
+  },
+  {
+    name: "react",
+    tag: "React",
+    color: cyanBright,
+    type: "frontend",
+    variant: [
+      {
+        name: "ts",
+        tag: "TypeScript",
+        color: blueBright,
+      },
+      {
+        name: "js",
+        tag: "JavaScript",
+        color: yellowBright,
+      },
+    ],
+    style: [
+      {
+        name: "css",
+        tag: "CSS",
+        color: blue,
+      },
+      {
+        name: "scss",
+        tag: "SCSS",
+        color: yellow,
+      },
+      {
+        name: "tailwind",
+        tag: "TailwindCSS",
+        color: blueBright,
+      },
+    ],
+  },
+  {
+    name: "node",
+    tag: "Node",
+    color: green,
+    type: "backend",
+    variant: [
+      {
+        name: "ts",
+        tag: "TypeScript",
+        color: blueBright,
+      },
+      {
+        name: "js",
+        tag: "JavaScript",
+        color: yellowBright,
+      },
+    ],
+  },
+];

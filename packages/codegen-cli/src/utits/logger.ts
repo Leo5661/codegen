@@ -1,19 +1,19 @@
-import chalk from "chalk"
+import pc from "picocolors";
 
 export const logger = {
   error(...args: unknown[]) {
-    console.log(chalk.red(...args))
+    console.log(pc.red("✖"), ...args);
   },
   warn(...args: unknown[]) {
-    console.log(chalk.yellow(...args))
+    console.log(pc.yellow("⚠"), ...args)
   },
   info(...args: unknown[]) {
-    console.log(chalk.cyan(...args))
+    console.log(pc.cyan("i"), ...args)
   },
   success(...args: unknown[]) {
-    console.log(chalk.green(...args))
+    console.log(pc.green("✔"), ...args)
   },
-  break() {
+  lineBreak() {
     console.log("")
   },
 }

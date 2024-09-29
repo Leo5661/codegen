@@ -6,12 +6,19 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "dev:cli": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "dev:doc": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
     "lint": {},
     "type-check": {},
     "dev": {
       "dependsOn": ["^build"],
-      "cache": false,
-      "persistent": true
+      "cache": false
     },
     "link-pkg": {
       "cache": false

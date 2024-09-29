@@ -154,9 +154,15 @@ importers:
       '@vercel/style-guide':
         specifier: ^5.2.0
         version: 5.2.0(@next/eslint-plugin-next@14.2.3)(eslint@9.10.0(jiti@1.21.0))(prettier@3.2.5)(typescript@5.6.2)
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@9.10.0(jiti@1.21.0))
       eslint-config-turbo:
         specifier: ^2.0.0
         version: 2.1.2(eslint@9.10.0(jiti@1.21.0))
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
 
   packages/config-typescript: {}
 
