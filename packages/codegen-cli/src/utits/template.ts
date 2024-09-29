@@ -41,30 +41,69 @@ export type FrameworkVariant = {
   color: ColorFunction;
 };
 
+// Style
+
+export type StyleProps =
+  | "Tailwind"
+  | "NativewindCSS"
+  | "Stylex"
+  | "Tailwind-Shadcn-UI"
+  | "Material-UI"
+  | "Chakra-UI"
+  | "Vanilla-CSS";
+
 export type FrameworkStyle = {
-  name: string;
-  tag: string;
+  name: StyleProps;
   color: ColorFunction;
+  info?: string;
 };
 
 export const templates: Framework[] = [
   {
     name: "next",
     tag: "Next14",
-    color: blueBright,
+    color: cyanBright,
     type: "fullstack",
     variant: [
       {
-        name: "ts",
+        name: "next-default",
         tag: "Default Next.js",
+        color: cyan,
+      },
+      {
+        name: "ts",
+        tag: "TypeScript",
         color: blueBright,
+      },
+      {
+        name: "js",
+        tag: "JavaScript",
+        color: yellowBright,
+      },
+    ],
+    style: [
+      {
+        name: "Tailwind",
+        color: blue,
+      },
+      {
+        name: "Stylex",
+        color: magenta,
+      },
+      {
+        name: "Tailwind-Shadcn-UI",
+        color: reset,
+      },
+      {
+        name: "Material-UI",
+        color: cyan,
       },
     ],
   },
   {
     name: "react",
     tag: "React",
-    color: cyanBright,
+    color: blue,
     type: "frontend",
     variant: [
       {
@@ -80,19 +119,128 @@ export const templates: Framework[] = [
     ],
     style: [
       {
-        name: "css",
-        tag: "CSS",
+        name: "Tailwind",
         color: blue,
       },
       {
-        name: "scss",
-        tag: "SCSS",
-        color: yellow,
+        name: "Stylex",
+        color: magenta,
       },
       {
-        name: "tailwind",
-        tag: "TailwindCSS",
+        name: "Tailwind-Shadcn-UI",
+        color: reset,
+      },
+      {
+        name: "Material-UI",
+        color: cyan,
+      },
+    ],
+  },
+  {
+    name: "vue",
+    tag: "Vue",
+    color: greenBright,
+    type: "frontend",
+    variant: [
+      {
+        name: "ts",
+        tag: "TypeScript",
         color: blueBright,
+      },
+      {
+        name: "js",
+        tag: "JavaScript",
+        color: yellowBright,
+      },
+    ],
+    style: [
+      {
+        name: "Tailwind",
+        color: blue,
+      },
+      {
+        name: "Stylex",
+        color: magenta,
+      },
+      {
+        name: "Tailwind-Shadcn-UI",
+        color: reset,
+      },
+      {
+        name: "Material-UI",
+        color: cyan,
+      },
+      {
+        name: "Chakra-UI",
+        color: green,
+      },
+    ],
+  },
+  {
+    name: "remix",
+    tag: "Remix",
+    color: magenta,
+    type: "fullstack",
+    variant: [
+      {
+        name: "ts",
+        tag: "TypeScript",
+        color: blueBright,
+      },
+    ],
+    style: [
+      {
+        name: "Tailwind",
+        color: blue,
+      },
+      {
+        name: "Stylex",
+        color: magenta,
+      },
+      {
+        name: "Tailwind-Shadcn-UI",
+        color: reset,
+      },
+      {
+        name: "Material-UI",
+        color: cyan,
+      },
+      {
+        name: "Chakra-UI",
+        color: green,
+      },
+    ],
+  },
+  {
+    name: "rn",
+    tag: "React-Native",
+    color: blue,
+    type: "frontend",
+    variant: [
+      {
+        name: "expo",
+        tag: "Expo + TypeScript",
+        color: blueBright,
+      },
+      // {
+      //   name: "react-native",
+      //   tag: "Create React Native + TypeScript",
+      //   color: cyan,
+      // },
+    ],
+    style: [
+      {
+        name: "NativewindCSS",
+        color: blue,
+        info: "Tailwind for React Native",
+      },
+      {
+        name: "Stylex",
+        color: magenta,
+      },
+      {
+        name: "Vanilla-CSS",
+        color: yellowBright,
       },
     ],
   },

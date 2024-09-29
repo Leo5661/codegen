@@ -5,14 +5,14 @@ import pc from "picocolors";
 import { z } from "zod";
 import { Header } from "@/src/header";
 import { isValidPackageName } from "../utits/is-valid-package-name";
-import { Framework, templates } from "../utits/template";
+import { Framework, StyleProps, templates } from "../utits/template";
 import { generatePackage } from "../scripts/package-generator";
 
 export type PromtConfig = {
   projectName: string;
-  framework: Framework;
+  framework: string;
   variant: string;
-  style: string;
+  style: StyleProps;
   isORM: boolean;
   orm: string;
   onConfirm: boolean;
@@ -52,6 +52,17 @@ const variantList = (framework: string) => {
   );
 };
 
+const styleList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.style?.map((style) => ({
+        value: style.name,
+        label: style.color(style.name),
+      })) || []
+  );
+};
+
 const typeOfFramework = (framework: string) => {
   return templates.find((f) => f.name === framework)?.type;
 };
@@ -82,15 +93,14 @@ export async function runInit() {
           options: variantList(results.framework as string),
         }),
       style: ({ results }) => {
-        if (typeOfFramework(results.framework as string) !== "backend") {
+        if (
+          typeOfFramework(results.framework as string) !== "backend" &&
+          results.variant !== "default-next"
+        ) {
           return promt.select({
             message: `🎨 What you want for style?`,
             initialValue: "CSS",
-            options: [
-              { value: "CSS", label: pc.blue("CSS") },
-              { value: "SCSS", label: pc.yellow("SCSS") },
-              { value: "Tailwind", label: pc.blueBright("TailwindCSS") },
-            ],
+            options: styleList(results.framework as string),
           });
         }
       },

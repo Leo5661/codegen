@@ -47,3 +47,19 @@ export const writeFiles = async ({
     }
   }
 };
+
+/**
+ * Prepend a line to a file.
+ * @param {string} filePath The path to the file to modify
+ * @param {string} newLine The line to prepend to the file
+ */
+export const prependLine = async (filePath: string, newLine: string) => {
+  try {
+    const existingContent = await fs.readFile(filePath, "utf8");
+    const updatedContent = `${newLine}\n${existingContent}`;
+
+    await fs.writeFile(filePath, updatedContent, "utf8");
+  } catch (err) {
+    console.error("Error:", err);
+  }
+};

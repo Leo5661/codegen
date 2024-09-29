@@ -7,6 +7,7 @@ import { execa } from "execa";
 import { writeFiles } from "../utits/io-util";
 import { pkgFromUserAgent } from "../utits/get-package-info";
 import { logger } from "../utits/logger";
+import { setupStyle } from "./setup-style";
 
 const cwd = process.cwd();
 
@@ -66,13 +67,18 @@ export const generatePackage = async (results: PromtConfig) => {
     logger.error(error);
   }
 
+  //Setup Style
+
+  if (style) {
+    await setupStyle(root, framework, variant, style);
+  }
+
   // if onConfirm is true, install dependencies
 
-  if (onConfirm) {
-    const newDir = path.join(cwd, projectName);
-    process.chdir(newDir);
-    await execa`${packageManager} install`;
-  }
+  // if (onConfirm) {
+  //   process.chdir(root);
+  //   await execa`${packageManager} install`;
+  // }
 
   let nextSteps = `cd ${projectName}        \n${onConfirm ? "" : `${packageManager} install\n`}${packageManager} dev`;
 

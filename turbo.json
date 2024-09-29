@@ -7,7 +7,6 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "dev:cli": {
-      "dependsOn": ["^build"],
       "cache": false
     },
     "dev:doc": {
