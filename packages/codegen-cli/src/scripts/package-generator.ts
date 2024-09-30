@@ -79,8 +79,4 @@ export const generatePackage = async (results: PromtConfig) => {
   //   process.chdir(root);
   //   await execa`${packageManager} install`;
   // }
-
-  let nextSteps = `cd ${projectName}        \n${onConfirm ? "" : `${packageManager} install\n`}${packageManager} dev`;
-
-  promt.note(nextSteps, "🎉 Next steps.");
 };

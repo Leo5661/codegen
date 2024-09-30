@@ -7,6 +7,7 @@ import { Header } from "@/src/header";
 import { isValidPackageName } from "../utits/is-valid-package-name";
 import { Framework, StyleProps, templates } from "../utits/template";
 import { generatePackage } from "../scripts/package-generator";
+import { logger } from "../utits/logger";
 
 export type PromtConfig = {
   projectName: string;
@@ -149,11 +150,16 @@ export async function runInit() {
     await generatePackage(promtConfig);
     spinner.stop();
   } else {
-    await generatePackage(promtConfig);
     process.exit(0);
   }
 
-  promt.outro(
+  let nextSteps = `cd ${promtConfig.projectName}        \n${promtConfig.onConfirm ? "" : `${"npm"} install\n`}${"npm"} dev`;
+
+  promt.note(nextSteps, "🎉 Next steps.");
+
+  logger.info(
     `⚠️ Problems? ${pc.underline(pc.cyan("https://github.com/Leo5661/codegen/issues"))}`,
   );
+
+  process.exit(0);
 }

@@ -171,17 +171,6 @@ export default {
 }
 `;
 
-export const REACT_MAIN_PAGE = `import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
-`;
-
 export const REACT_APP_PAGE = `import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -264,6 +253,65 @@ import HelloWorld from './components/HelloWorld.vue'
   </div>
   <HelloWorld msg="Vite + Vue" />
 </template>
+`;
+
+export const VUE_HELLOWORLD_PAGE = `<script setup lang="ts">
+import { ref } from 'vue'
+
+defineProps<{ msg: string }>()
+
+const count = ref(0)
+</script>
+
+<template>
+  <div class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-900 text-white">
+    <h1 class="text-4xl font-bold mb-4">{{ msg }}</h1>
+
+    <div class="card p-8 bg-gray-800 rounded-lg shadow-md text-center">
+      <button
+        type="button"
+        class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors"
+        @click="count++"
+      >
+        count is {{ count }}
+      </button>
+      <p class="mt-4">
+        Edit
+        <code class="bg-gray-700 p-1 rounded">components/HelloWorld.vue</code> to test HMR
+      </p>
+    </div>
+
+    <p class="mt-4">
+      Check out
+      <a
+        href="https://vuejs.org/guide/quick-start.html#local"
+        target="_blank"
+        class="text-blue-400 hover:text-blue-300"
+      >
+        create-vue
+      </a>
+      , the official Vue + Vite starter
+    </p>
+    <p>
+      Learn more about IDE Support for Vue in the
+      <a
+        href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
+        target="_blank"
+        class="text-blue-400 hover:text-blue-300"
+      >
+        Vue Docs Scaling up Guide
+      </a>
+      .
+    </p>
+    <p class="read-the-docs mt-4 text-gray-400">Click on the Vite and Vue logos to learn more</p>
+  </div>
+</template>
+
+<style scoped>
+.read-the-docs {
+  @apply text-gray-400;
+}
+</style>
 `;
 
 export const NATIVEWIND_TAILWIND_CONFIG = `/** @type {import('tailwindcss').Config} */

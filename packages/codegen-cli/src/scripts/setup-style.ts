@@ -15,6 +15,17 @@ export const setupStyle = async (
   variant: string,
   style: StyleProps,
 ) => {
+  process.chdir(rootDir);
+  // logger.info("cwd: ", process.cwd());
+
+  await execa("npm", [
+    "install",
+    "-D",
+    "tailwindcss",
+    "postcss",
+    "autoprefixer",
+  ]);
+
   if (framework === "next" && style === "Tailwind") {
     setTailwindOnNextjs(rootDir, variant);
   } else if (framework === "react" && style === "Tailwind") {
@@ -24,6 +35,9 @@ export const setupStyle = async (
   } else if (framework === "rn" && style === "NativewindCSS") {
     setNativewindOnExpo(rootDir);
   }
+
+  process.chdir(cwd);
+  // logger.info("cwd: ", process.cwd());
 };
 
 async function setTailwindOnNextjs(rootDir: string, variant: string) {
@@ -50,16 +64,11 @@ async function setTailwindOnNextjs(rootDir: string, variant: string) {
   }
 
   try {
-    process.chdir(rootDir);
-    await execa("npm", [
-      "install",
-      "-D",
-      "tailwindcss",
-      "postcss",
-      "autoprefixer",
-    ]);
-
-    await execa("npx", ["tailwindcss", "init", "-p"]);
+    // if(variant === "ts" || variant === "next-default") {
+    //   await execa("npx", ["tailwindcss", "init", "--ts", "-p"]);
+    // } else {
+    //   await execa("npx", ["tailwindcss", "init", "-p"]);
+    // }
 
     // update postcss and tailwind
     await writeFiles({
@@ -106,15 +115,6 @@ async function setTailwindOnNextjs(rootDir: string, variant: string) {
 
 async function setTailwindOnReact(rootDir: string, variant: string) {
   try {
-    process.chdir(rootDir);
-    await execa("npm", [
-      "install",
-      "-D",
-      "tailwindcss",
-      "postcss",
-      "autoprefixer",
-    ]);
-
     await execa("npx", ["tailwindcss", "init", "-p"]);
 
     // update tailwind
@@ -138,25 +138,13 @@ async function setTailwindOnReact(rootDir: string, variant: string) {
     if (variant === "js") {
       await writeFiles({
         root: `${rootDir}/src`,
-        fileName: "main.jsx",
-        content: styleTemplate.REACT_MAIN_PAGE,
-      });
-
-      await writeFiles({
-        root: `${rootDir}/src`,
-        fileName: "page.jsx",
+        fileName: "App.jsx",
         content: styleTemplate.REACT_APP_PAGE,
       });
     } else {
       await writeFiles({
-        root: `${rootDir}/app`,
-        fileName: "main.tsx",
-        content: styleTemplate.REACT_MAIN_PAGE,
-      });
-
-      await writeFiles({
         root: `${rootDir}/src`,
-        fileName: "page.tsx",
+        fileName: "App.tsx",
         content: styleTemplate.REACT_APP_PAGE,
       });
     }
@@ -171,16 +159,6 @@ async function setTailwindOnReact(rootDir: string, variant: string) {
 
 async function setTailwindOnVue(rootDir: string, variant: string) {
   try {
-    process.chdir(rootDir);
-
-    await execa("npm", [
-      "install",
-      "-D",
-      "tailwindcss",
-      "postcss",
-      "autoprefixer",
-    ]);
-
     if (variant === "ts") {
       await execa("npx", ["tailwindcss", "init", "--ts", "-p"]);
 
@@ -214,6 +192,12 @@ async function setTailwindOnVue(rootDir: string, variant: string) {
       fileName: "App.vue",
       content: styleTemplate.VUE_APP_PAGE,
     });
+
+    await writeFiles({
+      root: `${rootDir}/src/components`,
+      fileName: "HelloWorld.vue",
+      content: styleTemplate.VUE_HELLOWORLD_PAGE,
+    });
   } catch (error) {
     logger.error(error);
   }
@@ -221,18 +205,11 @@ async function setTailwindOnVue(rootDir: string, variant: string) {
 
 async function setNativewindOnExpo(rootDir: string) {
   try {
-    process.chdir(rootDir);
-
     /* TODO: Update Nativewind as of now using nativewind v2.x and tailwindcss v3.3.2
      *  as nativewind v4.x get into stable we will use tailwindcss@latest with expo.
      */
 
     // install dependencies
-    await execa("npm", [
-      "nativewind@^4.0.1",
-      "react-native-reanimated",
-      "tailwindcss",
-    ]);
 
     // if OS is mac run pod install
     if (process.platform === "darwin") {

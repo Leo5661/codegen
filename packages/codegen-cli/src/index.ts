@@ -4,7 +4,12 @@ import { Command } from "commander";
 import { getPackageInfo } from "@/src/utits/get-package-info";
 import { init } from "./commands/init";
 
+process.on("SIGINT", () => process.exit(0));
+process.on("SIGTERM", () => process.exit(0));
+
 async function main() {
+  process.title = "codegen";
+  // console.log("process id is " + process.pid);
   const packageInfo = await getPackageInfo();
 
   const program = new Command()
