@@ -33,6 +33,7 @@ export type Framework = {
   type: "frontend" | "backend" | "fullstack";
   variant: FrameworkVariant[];
   style?: FrameworkStyle[];
+  database?: Database;
 };
 
 export type FrameworkVariant = {
@@ -56,6 +57,20 @@ export type FrameworkStyle = {
   name: StyleProps;
   color: ColorFunction;
   info?: string;
+};
+
+export type DatabaseType =
+  | "Postgres"
+  | "SQLite"
+  | "Turso"
+  | "MySQL2"
+  | "MongoDB"
+  | "Redis"
+  | "PlanetScale";
+export type ORMType = "Prisma" | "Drizzle";
+export type Database = {
+  orm: ORMType[];
+  database: DatabaseType[];
 };
 
 export const templates: Framework[] = [
@@ -99,6 +114,10 @@ export const templates: Framework[] = [
         color: cyan,
       },
     ],
+    database: {
+      orm: ["Prisma", "Drizzle"],
+      database: ["Postgres"],
+    },
   },
   {
     name: "react",
@@ -210,6 +229,10 @@ export const templates: Framework[] = [
         color: green,
       },
     ],
+    database: {
+      orm: ["Prisma", "Drizzle"],
+      database: ["Postgres"],
+    },
   },
   {
     name: "rn",
@@ -261,5 +284,9 @@ export const templates: Framework[] = [
         color: yellowBright,
       },
     ],
+    database: {
+      orm: ["Prisma", "Drizzle"],
+      database: ["Postgres"],
+    },
   },
 ];

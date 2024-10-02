@@ -1,37 +1,39 @@
 import path from "node:path";
 import fs from "fs-extra";
 import { PromtConfig } from "../commands/init";
-import * as promt from "@clack/prompts";
 import { fileURLToPath } from "node:url";
-import { execa } from "execa";
 import { writeFiles } from "../utits/io-util";
 import { pkgFromUserAgent } from "../utits/get-package-info";
 import { logger } from "../utits/logger";
 import { setupStyle } from "./setup-style";
+import { setupDatabase } from "./setup-database";
 
 const cwd = process.cwd();
 
 export const generatePackage = async (results: PromtConfig) => {
-  const { projectName, framework, variant, style, isORM, orm, onConfirm } =
-    results;
+  const {
+    projectName,
+    framework,
+    variant,
+    style,
+    isORM,
+    orm,
+    database,
+    onConfirm,
+  } = results;
 
   const root = path.join(cwd, projectName);
-
-  // USER package manager
 
   const packageManagerInfo = pkgFromUserAgent(
     process.env.npm_config_user_agent,
   );
   const packageManager = packageManagerInfo?.name ?? "npm";
 
-  // create project dir
   try {
     await fs.mkdirs(root);
   } catch (error) {
     logger.error(error);
   }
-
-  // create base for framework or copy from preBuilt template for framework
 
   const templateDir = path.resolve(
     fileURLToPath(import.meta.url),
@@ -39,7 +41,6 @@ export const generatePackage = async (results: PromtConfig) => {
     `template-${framework}-${variant}`,
   );
 
-  // copy template
   const files = fs.readdirSync(templateDir);
 
   for (const file of files.filter((f) => f !== "package.json")) {
@@ -50,7 +51,6 @@ export const generatePackage = async (results: PromtConfig) => {
     });
   }
 
-  // update package.json
   // TODO add to include custom dependencies
   try {
     const packageJson = JSON.parse(
@@ -58,7 +58,7 @@ export const generatePackage = async (results: PromtConfig) => {
     );
     packageJson.name = projectName;
 
-    writeFiles({
+    await writeFiles({
       root,
       fileName: "package.json",
       content: JSON.stringify(packageJson, null, 2) + "\n",
@@ -67,16 +67,11 @@ export const generatePackage = async (results: PromtConfig) => {
     logger.error(error);
   }
 
-  //Setup Style
-
   if (style) {
     await setupStyle(root, framework, variant, style);
   }
 
-  // if onConfirm is true, install dependencies
-
-  // if (onConfirm) {
-  //   process.chdir(root);
-  //   await execa`${packageManager} install`;
-  // }
+  if (isORM) {
+    await setupDatabase(root, framework, variant, orm, database);
+  }
 };

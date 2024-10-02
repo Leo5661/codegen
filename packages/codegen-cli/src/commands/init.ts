@@ -5,7 +5,13 @@ import pc from "picocolors";
 import { z } from "zod";
 import { Header } from "@/src/header";
 import { isValidPackageName } from "../utits/is-valid-package-name";
-import { Framework, StyleProps, templates } from "../utits/template";
+import {
+  DatabaseType,
+  Framework,
+  ORMType,
+  StyleProps,
+  templates,
+} from "../utits/template";
 import { generatePackage } from "../scripts/package-generator";
 import { logger } from "../utits/logger";
 
@@ -15,7 +21,8 @@ export type PromtConfig = {
   variant: string;
   style: StyleProps;
   isORM: boolean;
-  orm: string;
+  orm: ORMType;
+  database: DatabaseType;
   onConfirm: boolean;
 };
 
@@ -67,6 +74,28 @@ const styleList = (framework: string) => {
 const typeOfFramework = (framework: string) => {
   return templates.find((f) => f.name === framework)?.type;
 };
+
+const ormList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.database?.orm.map((orm) => ({
+        value: orm,
+        label: orm,
+      })) || []
+  );
+};
+
+const databaseList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.database?.database.map((db) => ({
+        value: db,
+        label: db,
+      })) || []
+  );
+};
 export async function runInit() {
   promt.intro(pc.bgCyan(pc.black("CodeGen Initializer")));
 
@@ -106,7 +135,7 @@ export async function runInit() {
         }
       },
       isORM: ({ results }) => {
-        if (typeOfFramework(results.framework as string) === "backend") {
+        if (typeOfFramework(results.framework as string) !== "frontend") {
           return promt.confirm({
             message: `🤔 Do you want ${pc.cyan("ORM")} for database management?`,
             initialValue: true,
@@ -119,10 +148,17 @@ export async function runInit() {
           return promt.select({
             message: `🥷 What you want as ORM?`,
             initialValue: "Prisma",
-            options: [
-              { value: "Prisma", label: pc.blueBright("Prisma ORM") },
-              { value: "Drizzle", label: pc.greenBright("Drizzle ORM") },
-            ],
+            options: ormList(results.framework as string),
+          });
+        }
+      },
+
+      database: ({ results }) => {
+        if (results.isORM) {
+          return promt.select({
+            message: `🥷 What you want as Database?`,
+            initialValue: "Postgres",
+            options: databaseList(results.framework as string),
           });
         }
       },

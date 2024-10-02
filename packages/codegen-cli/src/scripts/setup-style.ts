@@ -5,8 +5,6 @@ import { execa } from "execa";
 import { prependLine, writeFiles } from "../utits/io-util";
 import * as styleTemplate from "../utits/style-template";
 
-// const explorer = cosmiconfigSync("tailwind.config.js");
-
 const cwd = process.cwd();
 
 export const setupStyle = async (
@@ -16,7 +14,6 @@ export const setupStyle = async (
   style: StyleProps,
 ) => {
   process.chdir(rootDir);
-  // logger.info("cwd: ", process.cwd());
 
   await execa("npm", [
     "install",
@@ -37,7 +34,6 @@ export const setupStyle = async (
   }
 
   process.chdir(cwd);
-  // logger.info("cwd: ", process.cwd());
 };
 
 async function setTailwindOnNextjs(rootDir: string, variant: string) {
@@ -46,30 +42,18 @@ async function setTailwindOnNextjs(rootDir: string, variant: string) {
   let postcssFileName: string;
   let postcssConfigTemplate: string;
   if (variant === "js") {
-    // tailwind
     tailwindConfigTemplate = styleTemplate.TAILWIND_CONFIG_NEXT_JS;
     tailwindFileName = "tailwind.config.js";
-
-    // postcss
     postcssConfigTemplate = styleTemplate.POSTCSS_CONFIG_NEXT_JS;
     postcssFileName = "postcss.config.js";
   } else {
-    // tailwind
     tailwindConfigTemplate = styleTemplate.TAILWIND_CONFIG_NEXT_TS;
     tailwindFileName = "tailwind.config.ts";
-
-    // postcss
     postcssConfigTemplate = styleTemplate.POSTCSS_CONFIG_NEXT_MJS;
     postcssFileName = "postcss.config.mjs";
   }
 
   try {
-    // if(variant === "ts" || variant === "next-default") {
-    //   await execa("npx", ["tailwindcss", "init", "--ts", "-p"]);
-    // } else {
-    //   await execa("npx", ["tailwindcss", "init", "-p"]);
-    // }
-
     // update postcss and tailwind
     await writeFiles({
       root: rootDir,

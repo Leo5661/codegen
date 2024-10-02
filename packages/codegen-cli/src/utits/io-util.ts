@@ -30,21 +30,21 @@ export const writeFiles = async ({
   content,
 }: WriteFilesOptions) => {
   const targetPath = path.join(root, renameFiles[fileName] ?? fileName);
-  if (content) {
-    try {
+  try {
+    if (content) {
+      const dirExists = await fs.pathExists(path.dirname(targetPath));
+      if (!dirExists) {
+        await fs.ensureDir(path.dirname(targetPath));
+      }
       await fs.writeFile(targetPath, content);
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    try {
+    } else {
       if (!src) {
         return;
       }
       await fs.copy(path.join(src, fileName), targetPath);
-    } catch (error) {
-      console.log(error);
     }
+  } catch (error) {
+    console.log(error);
   }
 };
 
