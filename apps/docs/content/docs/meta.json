@@ -1,5 +1,5 @@
 {
     "name": "Guid",
     "root": true,
-    "pages": ["introduction", "--- Guid ---", "installation", "cli", "templates"]
+    "pages": ["introduction", "--- Guide ---", "installation", "cli", "templates"]
 }

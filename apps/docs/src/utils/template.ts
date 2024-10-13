@@ -73,19 +73,19 @@ export const templates: Framework[] = [
       {
         name: "Tailwind",
       },
-      {
-        name: "Stylex",
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-      },
-      {
-        name: "Material-UI",
-      },
+      // {
+      //   name: "Stylex",
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      // },
+      // {
+      //   name: "Material-UI",
+      // },
     ],
     database: {
-      orm: ["Prisma", "Drizzle"],
-      database: ["Postgres", "MongoDB", "Redis"],
+      orm: ["Prisma"],
+      database: ["Postgres"],
     },
   },
   {
@@ -105,15 +105,15 @@ export const templates: Framework[] = [
       {
         name: "Tailwind",
       },
-      {
-        name: "Stylex",
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-      },
-      {
-        name: "Material-UI",
-      },
+      // {
+      //   name: "Stylex",
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      // },
+      // {
+      //   name: "Material-UI",
+      // },
     ],
   },
   {
@@ -133,18 +133,18 @@ export const templates: Framework[] = [
       {
         name: "Tailwind",
       },
-      {
-        name: "Stylex",
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-      },
-      {
-        name: "Material-UI",
-      },
-      {
-        name: "Chakra-UI",
-      },
+      // {
+      //   name: "Stylex",
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      // },
+      // {
+      //   name: "Material-UI",
+      // },
+      // {
+      //   name: "Chakra-UI",
+      // },
     ],
   },
   {
@@ -160,22 +160,22 @@ export const templates: Framework[] = [
       {
         name: "Tailwind",
       },
-      {
-        name: "Stylex",
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-      },
-      {
-        name: "Material-UI",
-      },
-      {
-        name: "Chakra-UI",
-      },
+      // {
+      //   name: "Stylex",
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      // },
+      // {
+      //   name: "Material-UI",
+      // },
+      // {
+      //   name: "Chakra-UI",
+      // },
     ],
     database: {
-      orm: ["Prisma", "Drizzle"],
-      database: ["Postgres", "MySQL", "MongoDB", "Redis"],
+      orm: ["Prisma"],
+      database: ["Postgres"],
     },
   },
   {
@@ -196,12 +196,12 @@ export const templates: Framework[] = [
         name: "NativewindCSS",
         info: "Tailwind for React Native",
       },
-      {
-        name: "Stylex",
-      },
-      {
-        name: "Vanilla-CSS",
-      },
+      // {
+      //   name: "Stylex",
+      // },
+      // {
+      //   name: "Vanilla-CSS",
+      // },
     ],
   },
   {
@@ -218,8 +218,8 @@ export const templates: Framework[] = [
       },
     ],
     database: {
-      orm: ["Prisma", "Drizzle"],
-      database: ["Postgres", "MySQL", "MongoDB", "Redis"],
+      orm: ["Prisma"],
+      database: ["Postgres"],
     },
   },
 ];

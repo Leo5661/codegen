@@ -29,7 +29,7 @@ function TemplateList() {
                 </ul>
               </td>
               <td>
-                <ul>
+                <ul className="list-none">
                   {template.style ? (
                     template.style.map((style) => {
                       return (
@@ -39,12 +39,12 @@ function TemplateList() {
                       );
                     })
                   ) : (
-                    <li>No style</li>
+                    <li className="font-thin opacity-50">No style</li>
                   )}
                 </ul>
               </td>
               <td>
-                <ul>
+                <ul className="list-none">
                   {template.database ? (
                     template.database.orm.map((orm) => {
                       return (
@@ -54,12 +54,12 @@ function TemplateList() {
                       );
                     })
                   ) : (
-                    <li>No ORM</li>
+                    <li className="font-thin opacity-50">No ORM</li>
                   )}
                 </ul>
               </td>
               <td>
-                <ul>
+                <ul className="list-none">
                   {template.database ? (
                     template.database.database.map((database) => {
                       return (
@@ -69,7 +69,7 @@ function TemplateList() {
                       );
                     })
                   ) : (
-                    <li>No database</li>
+                    <li className="font-thin opacity-50">No database</li>
                   )}
                 </ul>
               </td>
