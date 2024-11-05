@@ -1,4 +1,4 @@
-import { templates } from "../utils/template";
+import { templates } from "../lib/template";
 
 function TemplateList() {
   return (
