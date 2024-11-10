@@ -4,16 +4,22 @@ import { setTimeout } from "node:timers/promises";
 import pc from "picocolors";
 import { z } from "zod";
 import { Header } from "@/src/header";
-import { isValidPackageName } from "../utits/is-valid-package-name";
+import { isValidPackageName } from "../utils/is-valid-package-name";
 import {
+  databaseList,
   DatabaseType,
   Framework,
+  frameworkList,
+  ormList,
   ORMType,
+  styleList,
   StyleProps,
   templates,
-} from "../utits/template";
+  typeOfFramework,
+  variantList,
+} from "../utils/template";
 import { generatePackage } from "../scripts/package-generator";
-import { logger } from "../utits/logger";
+import { logger } from "../utils/logger";
 
 export type PromtConfig = {
   projectName: string;
@@ -26,11 +32,6 @@ export type PromtConfig = {
   onConfirm: boolean;
 };
 
-// TODO add options in future
-// const initOptionSchema = z.object({
-//     default: z.boolean(),
-// })
-
 export const init = new Command()
   .name("init")
   .description("Initialize a new project and install dependencies")
@@ -39,63 +40,6 @@ export const init = new Command()
     runInit();
   });
 
-const frameworkList = () => {
-  return templates.map((framework) => {
-    const colorFn = framework.color;
-    return {
-      value: framework.name,
-      label: colorFn(framework.tag),
-    };
-  });
-};
-
-const variantList = (framework: string) => {
-  return (
-    templates
-      .find((f) => f.name === framework)
-      ?.variant.map((variant) => ({
-        value: variant.name,
-        label: variant.color(variant.tag),
-      })) || []
-  );
-};
-
-const styleList = (framework: string) => {
-  return (
-    templates
-      .find((f) => f.name === framework)
-      ?.style?.map((style) => ({
-        value: style.name,
-        label: style.color(style.name),
-      })) || []
-  );
-};
-
-const typeOfFramework = (framework: string) => {
-  return templates.find((f) => f.name === framework)?.type;
-};
-
-const ormList = (framework: string) => {
-  return (
-    templates
-      .find((f) => f.name === framework)
-      ?.database?.orm.map((orm) => ({
-        value: orm,
-        label: orm,
-      })) || []
-  );
-};
-
-const databaseList = (framework: string) => {
-  return (
-    templates
-      .find((f) => f.name === framework)
-      ?.database?.database.map((db) => ({
-        value: db,
-        label: db,
-      })) || []
-  );
-};
 export async function runInit() {
   promt.intro(pc.bgCyan(pc.black("CodeGen Initializer")));
 
@@ -189,7 +133,7 @@ export async function runInit() {
     process.exit(0);
   }
 
-  let nextSteps = `cd ${promtConfig.projectName}        \n${promtConfig.onConfirm ? "" : `${"npm"} install\n`}${"npm"} dev`;
+  let nextSteps = `cd ${promtConfig.projectName}        \n${`npm install`}\n${"npm"} run dev`;
 
   promt.note(nextSteps, "🎉 Next steps.");
 

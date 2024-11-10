@@ -1,5 +1,6 @@
 import path from "node:path";
 import fs from "fs-extra";
+import { packageList } from "./packageList";
 
 export const renameFiles: Record<string, string | undefined> = {
   _gitignore: ".gitignore",
@@ -62,4 +63,49 @@ export const prependLine = async (filePath: string, newLine: string) => {
   } catch (err) {
     console.error("Error:", err);
   }
+};
+
+/**
+ * Adds the given packages to the package.json of the given root directory.
+ * Will add or update the dependencies and/or devDependencies fields.
+ * @param {string} rootDir The root directory of the project
+ * @param {{ dependencies: string[] | undefined, devDependencies: string[] | undefined }} packages
+ * The packages to add.
+ */
+export const addPackageToPackageJson = async (
+  rootDir: string,
+  packages: {
+    dependencies?: string[];
+    devDependencies?: string[];
+  },
+) => {
+  const packageJsonPath = path.join(rootDir, "package.json");
+  const packageJson = await fs.readJson(packageJsonPath);
+
+  if (packages.dependencies) {
+    packages.dependencies.forEach((dependency) => {
+      if (packageList[dependency] && !packageJson.dependencies[dependency]) {
+        packageJson.dependencies = {
+          ...packageJson.dependencies,
+          [dependency]: packageList[dependency],
+        };
+      }
+    });
+  }
+
+  if (packages.devDependencies) {
+    packages.devDependencies.forEach((devDependency) => {
+      if (
+        packageList[devDependency] &&
+        !packageJson.devDependencies[devDependency]
+      ) {
+        packageJson.devDependencies = {
+          ...packageJson.devDependencies,
+          [devDependency]: packageList[devDependency],
+        };
+      }
+    });
+  }
+
+  await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
 };

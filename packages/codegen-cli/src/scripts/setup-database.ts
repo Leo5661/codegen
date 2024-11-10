@@ -1,9 +1,9 @@
 import fs from "fs-extra";
-import { DatabaseType, ORMType, StyleProps } from "../utits/template";
-import { logger } from "../utits/logger";
+import { DatabaseType, ORMType, StyleProps } from "../utils/template";
+import { logger } from "../utils/logger";
 import { execa } from "execa";
-import { prependLine, writeFiles } from "../utits/io-util";
-import * as databaseTemplate from "../utits/database-template";
+import { prependLine, writeFiles } from "../utils/io-util";
+import * as databaseTemplate from "../utils/database-template";
 
 const cwd = process.cwd();
 

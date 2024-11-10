@@ -7,6 +7,7 @@
  * @module template
  */
 
+import exp from "node:constants";
 import colors from "picocolors";
 
 const {
@@ -290,3 +291,94 @@ export const templates: Framework[] = [
     },
   },
 ];
+
+/**
+ * Returns a list of frameworks, each with a value and a label.
+ * The label is colored with the color specified in the framework.
+ * @returns {Array<{value: string, label: string}>}
+ */
+export const frameworkList = () => {
+  return templates.map((framework) => {
+    const colorFn = framework.color;
+    return {
+      value: framework.name,
+      label: colorFn(framework.tag),
+    };
+  });
+};
+
+/**
+ * Returns a list of variants for a given framework, each with a value and a label.
+ * The label is colored with the color specified in the variant.
+ * @param {string} framework - The name of the framework.
+ * @returns {Array<{value: string, label: string}>}
+ */
+export const variantList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.variant.map((variant) => ({
+        value: variant.name,
+        label: variant.color(variant.tag),
+      })) || []
+  );
+};
+
+/**
+ * Returns a list of styles for a given framework, each with a value and a label.
+ * The label is colored with the color specified in the style.
+ * @param {string} framework - The name of the framework.
+ * @returns {Array<{value: string, label: string}>}
+ */
+export const styleList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.style?.map((style) => ({
+        value: style.name,
+        label: style.color(style.name),
+      })) || []
+  );
+};
+
+/**
+ * Returns the type of the given framework.
+ * The type is either "js" for JavaScript or "ts" for TypeScript.
+ * @param {string} framework - The name of the framework.
+ * @returns {string | undefined} The type of the framework, or undefined if the framework is not found.
+ */
+export const typeOfFramework = (framework: string) => {
+  return templates.find((f) => f.name === framework)?.type;
+};
+
+/**
+ * Returns a list of ORMs for a given framework, each with a value and a label.
+ * @param {string} framework - The name of the framework.
+ * @returns {Array<{value: string, label: string}>}
+ */
+export const ormList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.database?.orm.map((orm) => ({
+        value: orm,
+        label: orm,
+      })) || []
+  );
+};
+
+/**
+ * Returns a list of databases for a given framework, each with a value and a label.
+ * @param {string} framework - The name of the framework.
+ * @returns {Array<{value: string, label: string}>}
+ */
+export const databaseList = (framework: string) => {
+  return (
+    templates
+      .find((f) => f.name === framework)
+      ?.database?.database.map((db) => ({
+        value: db,
+        label: db,
+      })) || []
+  );
+};

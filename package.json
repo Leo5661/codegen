@@ -15,12 +15,12 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "type-check": "turbo type-check",
-    "lint:cli": "turbo lint --filter=@codegen/cli",
-    "build:cli": "turbo --filter=@codegen/cli build",
+    "lint:cli": "turbo lint --filter=@leocoder1/codegen-cli",
+    "build:cli": "turbo --filter=@leocoder1/codegen-cli build",
     "dev:doc": "turbo --filter=docs dev",
-    "dev:cli": "turbo --filter=@codegen/cli dev",
+    "dev:cli": "turbo --filter=@leocoder1/codegen-cli dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "pub:cli": "turbo lint build --filter=@codegen/cli && changeset version && changeset publish"
+    "pub:cli": "turbo lint build --filter=@leocoder1/codegen-cli && changeset version && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",

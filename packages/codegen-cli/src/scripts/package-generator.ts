@@ -2,9 +2,9 @@ import path from "node:path";
 import fs from "fs-extra";
 import { PromtConfig } from "../commands/init";
 import { fileURLToPath } from "node:url";
-import { writeFiles } from "../utits/io-util";
-import { pkgFromUserAgent } from "../utits/get-package-info";
-import { logger } from "../utits/logger";
+import { writeFiles } from "../utils/io-util";
+import { pkgFromUserAgent } from "../utils/get-package-info";
+import { logger } from "../utils/logger";
 import { setupStyle } from "./setup-style";
 import { setupDatabase } from "./setup-database";
 
@@ -24,10 +24,7 @@ export const generatePackage = async (results: PromtConfig) => {
 
   const root = path.join(cwd, projectName);
 
-  const packageManagerInfo = pkgFromUserAgent(
-    process.env.npm_config_user_agent,
-  );
-  const packageManager = packageManagerInfo?.name ?? "npm";
+  //TODO add option to ask package manager
 
   try {
     await fs.mkdirs(root);

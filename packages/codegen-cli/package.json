@@ -1,7 +1,7 @@
 {
-    "name": "@codegen/cli",
+    "name": "@leocoder1/codegen-cli",
     "version": "0.0.1",
-    "description": "Node CLI to create base structure with all configurations for fast development",
+    "description": "Universal CLI for Tailored Templates in TS/JS Frameworks.",
     "publishConfig": {
         "provenance": true,
         "access": "public"
