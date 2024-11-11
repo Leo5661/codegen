@@ -1,6 +1,6 @@
 {
     "name": "@leocoder1/codegen-cli",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Universal CLI for Tailored Templates in TS/JS Frameworks.",
     "publishConfig": {
         "provenance": true,
