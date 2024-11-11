@@ -13,5 +13,5 @@
     }
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "tsconfig.json", "package.json", "README.md", "src/templates/**/*"]
+  "exclude": ["node_modules", "dist", "tsconfig.json", "package.json", "README.md", "templates/**/*"]
 }

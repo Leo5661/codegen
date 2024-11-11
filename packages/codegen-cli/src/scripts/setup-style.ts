@@ -22,8 +22,6 @@ export const setupStyle = async (
   style: StyleProps,
 ) => {
   try {
-    console.log("process.cwd()", process.cwd());
-
     await addPackageToPackageJson(rootDir, {
       devDependencies: ["tailwindcss", "postcss", "autoprefixer"],
     });
@@ -51,6 +49,6 @@ export const setupStyle = async (
 
     await setStyle(rootDir, variant);
   } catch (error) {
-    console.log("error in setupStyle: ", error);
+    console.log("error in setting style: ", error);
   }
 };
