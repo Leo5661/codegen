@@ -102,21 +102,21 @@ export const templates: Framework[] = [
         name: "Tailwind",
         color: blue,
       },
-      {
-        name: "Stylex",
-        color: magenta,
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-        color: reset,
-      },
-      {
-        name: "Material-UI",
-        color: cyan,
-      },
+      // {
+      //   name: "Stylex",
+      //   color: magenta,
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      //   color: reset,
+      // },
+      // {
+      //   name: "Material-UI",
+      //   color: cyan,
+      // },
     ],
     database: {
-      orm: ["Prisma", "Drizzle"],
+      orm: ["Prisma"],
       database: ["Postgres"],
     },
   },
@@ -142,18 +142,18 @@ export const templates: Framework[] = [
         name: "Tailwind",
         color: blue,
       },
-      {
-        name: "Stylex",
-        color: magenta,
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-        color: reset,
-      },
-      {
-        name: "Material-UI",
-        color: cyan,
-      },
+      // {
+      //   name: "Stylex",
+      //   color: magenta,
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      //   color: reset,
+      // },
+      // {
+      //   name: "Material-UI",
+      //   color: cyan,
+      // },
     ],
   },
   {
@@ -178,22 +178,22 @@ export const templates: Framework[] = [
         name: "Tailwind",
         color: blue,
       },
-      {
-        name: "Stylex",
-        color: magenta,
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-        color: reset,
-      },
-      {
-        name: "Material-UI",
-        color: cyan,
-      },
-      {
-        name: "Chakra-UI",
-        color: green,
-      },
+      // {
+      //   name: "Stylex",
+      //   color: magenta,
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      //   color: reset,
+      // },
+      // {
+      //   name: "Material-UI",
+      //   color: cyan,
+      // },
+      // {
+      //   name: "Chakra-UI",
+      //   color: green,
+      // },
     ],
   },
   {
@@ -213,25 +213,25 @@ export const templates: Framework[] = [
         name: "Tailwind",
         color: blue,
       },
-      {
-        name: "Stylex",
-        color: magenta,
-      },
-      {
-        name: "Tailwind-Shadcn-UI",
-        color: reset,
-      },
-      {
-        name: "Material-UI",
-        color: cyan,
-      },
-      {
-        name: "Chakra-UI",
-        color: green,
-      },
+      // {
+      //   name: "Stylex",
+      //   color: magenta,
+      // },
+      // {
+      //   name: "Tailwind-Shadcn-UI",
+      //   color: reset,
+      // },
+      // {
+      //   name: "Material-UI",
+      //   color: cyan,
+      // },
+      // {
+      //   name: "Chakra-UI",
+      //   color: green,
+      // },
     ],
     database: {
-      orm: ["Prisma", "Drizzle"],
+      orm: ["Prisma"],
       database: ["Postgres"],
     },
   },
@@ -258,14 +258,14 @@ export const templates: Framework[] = [
         color: blue,
         info: "Tailwind for React Native",
       },
-      {
-        name: "Stylex",
-        color: magenta,
-      },
-      {
-        name: "Vanilla-CSS",
-        color: yellowBright,
-      },
+      // {
+      //   name: "Stylex",
+      //   color: magenta,
+      // },
+      // {
+      //   name: "Vanilla-CSS",
+      //   color: yellowBright,
+      // },
     ],
   },
   {
@@ -286,7 +286,7 @@ export const templates: Framework[] = [
       },
     ],
     database: {
-      orm: ["Prisma", "Drizzle"],
+      orm: ["Prisma"],
       database: ["Postgres"],
     },
   },
