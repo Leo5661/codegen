@@ -15,6 +15,7 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "type-check": "turbo type-check",
+    "changeset": "changeset",
     "lint:cli": "turbo lint --filter=@leocoder1/codegen-cli",
     "build:cli": "turbo --filter=@leocoder1/codegen-cli build",
     "dev:doc": "turbo --filter=docs dev",
