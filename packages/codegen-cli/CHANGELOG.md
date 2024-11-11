@@ -1,5 +1,11 @@
 # @leocoder1/codegen-cli
 
+## 0.0.4
+
+### Patch Changes
+
+- 3b1fa08: removed not working styles.
+
 ## 0.0.3
 
 ### Patch Changes
