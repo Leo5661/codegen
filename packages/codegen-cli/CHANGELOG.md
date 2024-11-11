@@ -1,5 +1,11 @@
 # @leocoder1/codegen-cli
 
+## 0.0.5
+
+### Patch Changes
+
+- 628259a: fixed no template found.
+
 ## 0.0.4
 
 ### Patch Changes
