@@ -69,6 +69,12 @@ If you want to report a bug or raise a feature request please submit issue on [I
 3. Write tests for any new functionality or changes.
 4. Run tests using `pnpm test` to ensure that they pass.
 5. Commit your changes using descriptive commit messages: `git commit -m "feat: added new feature"` or `git commit -m "fix: resolved issue #123"`.
+
+> This repo uses [changesets](https://github.com/changesets/changesets) to
+make releasing updates easier. For you, the contributor, this means you
+should run `pnpm changeset` when you've got your changes ready. For
+more details, see this short document on [adding a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md#i-am-in-a-single-package-repository).
+
 6. Push your changes to your forked repository: `git push origin feature/my-feature` or `git push origin bugfix/issue-number`.
 
 ## Submitting a Pull Request

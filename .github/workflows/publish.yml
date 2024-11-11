@@ -6,9 +6,15 @@ on:
             - main
 
 concurrency: ${{github.workflow}}-${{github.ref}}
+permissions: {}
 
 jobs:
-    build:
+    release:
+        if: github.repository == 'Leo5661/codegen'
+        permissions: 
+          contents: write
+          pull-requests: write
+        name: Release
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -34,6 +40,7 @@ jobs:
               with: 
                 publish: pnpm run pub:cli
               env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
