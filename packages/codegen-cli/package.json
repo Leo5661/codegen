@@ -36,7 +36,7 @@
     "bugs": {
         "url": "https://github.com/Leo5661/codegen/issues"
     },
-    "homepage": "https://github.com/Leo5661/codegen#readme",
+    "homepage": "https://codegen-beta.vercel.app/docs/introduction",
     "scripts": {
         "link-pkg": "pnpm unlink --global codegen-cli && pnpm link --global",
         "clean": "rimraf dist",
