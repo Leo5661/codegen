@@ -34,9 +34,11 @@ export const generatePackage = async (results: PromtConfig) => {
 
   const templateDir = path.resolve(
     fileURLToPath(import.meta.url),
-    "../../src/templates",
+    "../../templates/",
     `template-${framework}-${variant}`,
   );
+
+  console.log("template dir:- ", templateDir);
 
   const files = fs.readdirSync(templateDir);
 
