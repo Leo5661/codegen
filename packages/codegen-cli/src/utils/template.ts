@@ -82,7 +82,7 @@ export const templates: Framework[] = [
     type: "fullstack",
     variant: [
       {
-        name: "next-default",
+        name: "default",
         tag: "Default Next.js",
         color: cyan,
       },

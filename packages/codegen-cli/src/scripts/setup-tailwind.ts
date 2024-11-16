@@ -4,93 +4,123 @@ import { execa } from "execa";
 import { prependLine, writeFiles } from "../utils/io-util";
 import * as styleTemplate from "../utils/style-template";
 
-export async function setTailwindOnNextjs(rootDir: string, variant?: string) {
-  let tailwindConfigTemplate: string;
-  let tailwindFileName: string;
-  let postcssFileName: string;
-  let postcssConfigTemplate: string;
-  if (variant === "js") {
-    tailwindConfigTemplate = styleTemplate.TAILWIND_CONFIG_NEXT_JS;
-    tailwindFileName = "tailwind.config.js";
-    postcssConfigTemplate = styleTemplate.POSTCSS_CONFIG_NEXT_JS;
-    postcssFileName = "postcss.config.js";
-  } else {
-    tailwindConfigTemplate = styleTemplate.TAILWIND_CONFIG_NEXT_TS;
-    tailwindFileName = "tailwind.config.ts";
-    postcssConfigTemplate = styleTemplate.POSTCSS_CONFIG_NEXT_MJS;
-    postcssFileName = "postcss.config.mjs";
+type FileDetails = {
+  path?: string;
+  fileName: string;
+  content: string;
+};
+
+type TailwindConfigTemplates = {
+  tailwindConfigTemplate: string;
+  tailwindFileName: string;
+  postcssConfigTemplate: string;
+  postcssFileName: string;
+};
+
+type Variants = "ts" | "js";
+
+const tailwindConfigMap: Record<Variants, TailwindConfigTemplates> = {
+  js: {
+    tailwindConfigTemplate: styleTemplate.TAILWIND_CONFIG_NEXT_JS,
+    tailwindFileName: "tailwind.config.js",
+    postcssConfigTemplate: styleTemplate.POSTCSS_CONFIG_NEXT_JS,
+    postcssFileName: "postcss.config.js",
+  },
+  ts: {
+    tailwindConfigTemplate: styleTemplate.TAILWIND_CONFIG_NEXT_TS,
+    tailwindFileName: "tailwind.config.ts",
+    postcssConfigTemplate: styleTemplate.POSTCSS_CONFIG_NEXT_MJS,
+    postcssFileName: "postcss.config.mjs",
+  },
+};
+
+const runFileOperationPipeLine = async (
+  root: string,
+  operations: FileDetails[],
+  fileToRemoves: string[],
+) => {
+  // run all file operations
+  for (const operation of operations) {
+    await writeFiles({
+      root: operation.path === undefined ? root : `${root}${operation.path}`,
+      fileName: operation.fileName,
+      content: operation.content,
+    });
   }
 
-  try {
-    await writeFiles({
-      root: rootDir,
+  for (const fileToRemove of fileToRemoves) {
+    await fs.remove(`${root}${fileToRemove}`);
+  }
+};
+
+export async function setTailwindOnNextjs(rootDir: string, variant: string) {
+  if (variant === "default") return;
+
+  const {
+    tailwindConfigTemplate,
+    tailwindFileName,
+    postcssConfigTemplate,
+    postcssFileName,
+  } = tailwindConfigMap[variant as Variants];
+
+  const fileOperations: FileDetails[] = [
+    {
       fileName: postcssFileName,
       content: postcssConfigTemplate,
-    });
-
-    await writeFiles({
-      root: rootDir,
+    },
+    {
       fileName: tailwindFileName,
       content: tailwindConfigTemplate,
-    });
-
-    await writeFiles({
-      root: `${rootDir}/app`,
+    },
+    {
+      path: "/app",
       fileName: "globals.css",
       content: styleTemplate.TAILWIND_GLOBAL_CSS,
-    });
+    },
+    {
+      path: "/app",
+      fileName: variant === "js" ? "page.jsx" : "page.tsx",
+      content: styleTemplate.NEXT_PAGE_TAILWIND_CONTENT,
+    },
+  ];
 
-    if (variant === "js") {
-      await writeFiles({
-        root: `${rootDir}/app`,
-        fileName: "page.js",
-        content: styleTemplate.NEXT_PAGE_TAILWIND_CONTENT,
-      });
-    } else {
-      await writeFiles({
-        root: `${rootDir}/app`,
-        fileName: "page.tsx",
-        content: styleTemplate.NEXT_PAGE_TAILWIND_CONTENT,
-      });
-    }
+  const fileToRemove = ["/app/page.module.css"];
 
-    await fs.remove(`${rootDir}/app/page.module.css`);
+  try {
+    runFileOperationPipeLine(rootDir, fileOperations, fileToRemove);
   } catch (error) {
     logger.error(error);
   }
 }
 
-export async function setTailwindOnReact(rootDir: string, variant?: string) {
-  try {
-    await execa("npx", ["tailwindcss", "init", "-p"]);
+export async function setTailwindOnReact(rootDir: string, variant: string) {
+  const { tailwindFileName, postcssConfigTemplate, postcssFileName } =
+    tailwindConfigMap[variant as Variants];
 
-    await writeFiles({
-      root: rootDir,
-      fileName: "tailwind.config.js",
+  const fileOperations: FileDetails[] = [
+    {
+      fileName: postcssFileName,
+      content: postcssConfigTemplate,
+    },
+    {
+      fileName: tailwindFileName,
       content: styleTemplate.TAILWIND_CONFIG_REACT,
-    });
-
-    await writeFiles({
-      root: `${rootDir}/src`,
+    },
+    {
+      path: "/src",
       fileName: "index.css",
       content: styleTemplate.TAILWIND_GLOBAL_CSS,
-    });
+    },
+    {
+      path: "/src",
+      fileName: variant === "js" ? "App.jsx" : "App.tsx",
+      content: styleTemplate.REACT_APP_PAGE,
+    },
+  ];
 
-    if (variant === "js") {
-      await writeFiles({
-        root: `${rootDir}/src`,
-        fileName: "App.jsx",
-        content: styleTemplate.REACT_APP_PAGE,
-      });
-    } else {
-      await writeFiles({
-        root: `${rootDir}/src`,
-        fileName: "App.tsx",
-        content: styleTemplate.REACT_APP_PAGE,
-      });
-    }
-
-    await fs.remove(`${rootDir}/src/App.css`);
+  const fileToRemove = ["/src/App.css"];
+  try {
+    runFileOperationPipeLine(rootDir, fileOperations, fileToRemove);
   } catch (error) {
     logger.error(error);
   }
@@ -99,15 +129,20 @@ export async function setTailwindOnReact(rootDir: string, variant?: string) {
 export async function setTailwindOnVue(rootDir: string, variant?: string) {
   try {
     if (variant === "ts") {
-      await execa("npx", ["tailwindcss", "init", "--ts", "-p"]);
-
-      await writeFiles({
-        root: rootDir,
-        fileName: "tailwind.config.ts",
-        content: styleTemplate.TAILWIND_CONFIG_VUE_TS,
+      logger.info("Setting up tailwind on vue with typescript in ", rootDir);
+      await execa("npx", ["tailwindcss", "init", "--ts", "-p"], {
+        cwd: rootDir,
       });
+
+      // await writeFiles({
+      //   root: rootDir,
+      //   fileName: "tailwind.config.ts",
+      //   content: styleTemplate.TAILWIND_CONFIG_VUE_TS,
+      // });
     } else {
-      await execa("npx", ["tailwindcss", "init", "-p"]);
+      await execa("npx", ["tailwindcss", "init", "-p"], {
+        cwd: rootDir,
+      });
 
       await writeFiles({
         root: rootDir,

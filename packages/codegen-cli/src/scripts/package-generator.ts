@@ -3,7 +3,6 @@ import fs from "fs-extra";
 import { PromtConfig } from "../commands/init";
 import { fileURLToPath } from "node:url";
 import { writeFiles } from "../utils/io-util";
-import { pkgFromUserAgent } from "../utils/get-package-info";
 import { logger } from "../utils/logger";
 import { setupStyle } from "./setup-style";
 import { setupDatabase } from "./setup-database";
@@ -29,7 +28,7 @@ export const generatePackage = async (results: PromtConfig) => {
   try {
     await fs.mkdirs(root);
   } catch (error) {
-    logger.error(error);
+    logger.d("Error creating directory", error);
   }
 
   const templateDir = path.resolve(
@@ -37,8 +36,6 @@ export const generatePackage = async (results: PromtConfig) => {
     "../../templates/",
     `template-${framework}-${variant}`,
   );
-
-  console.log("template dir:- ", templateDir);
 
   const files = fs.readdirSync(templateDir);
 
@@ -63,7 +60,7 @@ export const generatePackage = async (results: PromtConfig) => {
       content: JSON.stringify(packageJson, null, 2) + "\n",
     });
   } catch (error) {
-    logger.error(error);
+    logger.error("Error writing package.json", error);
   }
 
   if (style) {
