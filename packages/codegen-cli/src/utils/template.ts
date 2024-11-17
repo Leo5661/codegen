@@ -203,7 +203,7 @@ export const templates: Framework[] = [
     type: "fullstack",
     variant: [
       {
-        name: "ts",
+        name: "default",
         tag: "TypeScript",
         color: blueBright,
       },

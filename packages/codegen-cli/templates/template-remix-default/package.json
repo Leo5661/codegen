@@ -1,5 +1,5 @@
 {
-  "name": "template-remix-ts",
+  "name": "template-remix-default",
   "private": true,
   "sideEffects": false,
   "type": "module",

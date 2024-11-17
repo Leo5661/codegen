@@ -2,10 +2,25 @@ import fs from "fs-extra";
 import { DatabaseType, ORMType, StyleProps } from "../utils/template";
 import { logger } from "../utils/logger";
 import { execa } from "execa";
-import { prependLine, writeFiles } from "../utils/io-util";
+import {
+  addPackageToPackageJson,
+  prependLine,
+  writeFiles,
+} from "../utils/io-util";
 import * as databaseTemplate from "../utils/database-template";
 
 const cwd = process.cwd();
+
+type FrameworkDatabaseMap = {
+  [framework: string]: {
+    [orm: string]: (
+      rootDir: string,
+      framework: string,
+      database: DatabaseType,
+      variant: string,
+    ) => Promise<void>;
+  };
+};
 
 export const setupDatabase = async (
   rootDir: string,
@@ -14,52 +29,77 @@ export const setupDatabase = async (
   orm: ORMType,
   database: DatabaseType,
 ) => {
-  process.chdir(rootDir);
+  try {
+    const frameworkDatabaseMap: FrameworkDatabaseMap = {
+      next: {
+        Prisma: setupWithPrisma,
+        Drizzle: setupWithDrizzle,
+      },
+      node: {
+        Prisma: setupWithPrisma,
+        Drizzle: setupWithDrizzle,
+      },
+      remix: {
+        Prisma: setupWithPrisma,
+        Drizzle: setupWithDrizzle,
+      },
+    };
 
-  if (orm === "Prisma") {
-    await execa("npm", ["install", "-D", "prisma"]);
-    await setupWithPrisma(rootDir, framework, variant, database);
-  } else if (orm === "Drizzle") {
-    await setupWithDrizzle(rootDir, framework, database);
+    const setupDatabase = frameworkDatabaseMap[framework]?.[orm];
+
+    if (!setupDatabase) {
+      throw new Error("Invalid ORM or database");
+    }
+
+    await setupDatabase(rootDir, framework, database, variant);
+  } catch (error) {
+    logger.error("Error in setting database", error);
   }
 
-  process.chdir(cwd);
+  // if (orm === "Prisma") {
+  //   await execa("npm", ["install", "-D", "prisma"], {
+  //     cwd: rootDir,
+  //   });
+  //   await setupWithPrisma(rootDir, framework, database, variant);
+  // } else if (orm === "Drizzle") {
+  //   await setupWithDrizzle(rootDir, framework, database);
+  // }
 };
 
 async function setupWithPrisma(
   rootDir: string,
   framework: string,
-  variant: string,
   database: DatabaseType,
+  variant: string,
 ) {
   try {
-    if (database === "Postgres") {
-      await execa("npx", [
-        "prisma",
-        "init",
-        "--datasource-provider",
-        "postgresql",
-      ]);
+    await addPackageToPackageJson(rootDir, {
+      devDependencies: ["prisma"],
+    });
 
-      if (
-        framework === "next" ||
-        framework === "node" ||
-        framework === "remix"
-      ) {
-        if (variant !== "js") {
-          await writeFiles({
-            root: `${rootDir}/lib`,
-            fileName: "utils.ts",
-            content: databaseTemplate.PRISMA_DB_UTIL_TS,
-          });
-        } else {
-          await writeFiles({
-            root: `${rootDir}/lib`,
-            fileName: "utils.js",
-            content: databaseTemplate.PRISMA_DB_UTIL_JS,
-          });
-        }
+    if (database === "Postgres") {
+      await execa(
+        "npx",
+        ["prisma", "init", "--datasource-provider", "mongodb"],
+        {
+          cwd: rootDir,
+        },
+      );
+
+      if (variant !== "js") {
+        await writeFiles({
+          root: `${rootDir}/lib`,
+          fileName: "utils.ts",
+          content: databaseTemplate.PRISMA_DB_UTIL_TS,
+        });
+      } else {
+        await writeFiles({
+          root: `${rootDir}/lib`,
+          fileName: "utils.js",
+          content: databaseTemplate.PRISMA_DB_UTIL_JS,
+        });
       }
+
       const packageJson = JSON.parse(
         fs.readFileSync(`${rootDir}/package.json`, "utf8"),
       );

@@ -65,7 +65,7 @@ export async function runInit() {
       style: ({ results }) => {
         if (
           typeOfFramework(results.framework as string) !== "backend" &&
-          results.variant !== "default-next"
+          results.variant !== "default"
         ) {
           return promt.select({
             message: `🎨 What you want for style?`,

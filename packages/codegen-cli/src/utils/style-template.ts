@@ -33,22 +33,31 @@ module.exports = {
 }
 `;
 
-export const POSTCSS_CONFIG_NEXT_MJS = `/** @type {import('postcss-load-config').Config} */
+export const POSTCSS_CONFIG_MJS = `/** @type {import('postcss-load-config').Config} */
 
 const config = {
   plugins: {
     tailwindcss: {},
+    autoprefixer: {},
   },
 };
 
 export default config;
 `;
 
-export const POSTCSS_CONFIG_NEXT_JS = `module.exports = {
+export const POSTCSS_CONFIG_JS = `module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   }
+}
+`;
+
+export const POSTCSS_CONFIG_CJS = `export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
 }
 `;
 
@@ -73,7 +82,7 @@ export default function Home() {
         />
         <ol className="list-decimal list-inside font-mono p-0 m-0 text-sm leading-6 tracking-tight">
           <li className="mb-2 last:mb-0">
-            Get started by editing <code className="bg-gray-100 dark:bg-gray-800 p-1 rounded font-semibold">app/page.tsx</code>.
+            Get started by editing <code className="bg-gray-100 dark:bg-gray-800 p-1 rounded font-semibold">app/page.tsx or app/page.jsx</code>.
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
@@ -197,7 +206,7 @@ function App() {
           count is {count}
         </button>
         <p className="mt-4">
-          Edit <code className="bg-gray-200 p-1 rounded">src/App.tsx</code> and save to test HMR
+          Edit <code className="bg-gray-200 p-1 rounded">src/App.tsx or src/App.jsx</code> and save to test HMR
         </p>
       </div>
       <p className="read-the-docs text-center mt-8">
@@ -347,3 +356,90 @@ module.exports = withNativeWind(config, { input: './global.css' })
 `;
 
 export const NATIVEWIND_ENV_D_TS = `/// <reference types="nativewind/types" />`;
+
+export type TailwindConfigTemplates = {
+  tailwindConfigTemplate: string;
+  tailwindFileName: string;
+  postcssConfigTemplate?: string;
+  postcssFileName?: string;
+};
+
+export type Variants = "ts" | "js";
+export type Frameworks = "next" | "react" | "vue" | "remix" | "rn";
+
+const postcssFileNameJS = "postcss.config.js";
+const postcssFileNameMJS = "postcss.config.mjs";
+const tailwindFileNameJS = "tailwind.config.js";
+const tailwindFileNameTS = "tailwind.config.ts";
+
+export const tailwindConfigMap: Record<
+  Frameworks,
+  Record<Variants, TailwindConfigTemplates>
+> = {
+  next: {
+    js: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_NEXT_JS,
+      tailwindFileName: tailwindFileNameJS,
+      postcssConfigTemplate: POSTCSS_CONFIG_JS,
+      postcssFileName: postcssFileNameJS,
+    },
+    ts: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_NEXT_TS,
+      tailwindFileName: tailwindFileNameTS,
+      postcssConfigTemplate: POSTCSS_CONFIG_MJS,
+      postcssFileName: postcssFileNameMJS,
+    },
+  },
+  react: {
+    js: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_REACT,
+      tailwindFileName: tailwindFileNameJS,
+      postcssConfigTemplate: POSTCSS_CONFIG_CJS,
+      postcssFileName: postcssFileNameJS,
+    },
+    ts: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_REACT,
+      tailwindFileName: tailwindFileNameTS,
+      postcssConfigTemplate: POSTCSS_CONFIG_CJS,
+      postcssFileName: postcssFileNameJS,
+    },
+  },
+  vue: {
+    js: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_VUE_JS,
+      tailwindFileName: tailwindFileNameJS,
+      postcssConfigTemplate: POSTCSS_CONFIG_CJS,
+      postcssFileName: postcssFileNameJS,
+    },
+    ts: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_VUE_TS,
+      tailwindFileName: tailwindFileNameTS,
+      postcssConfigTemplate: POSTCSS_CONFIG_MJS,
+      postcssFileName: postcssFileNameMJS,
+    },
+  },
+  remix: {
+    js: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_NEXT_JS,
+      tailwindFileName: tailwindFileNameJS,
+      postcssConfigTemplate: POSTCSS_CONFIG_JS,
+      postcssFileName: postcssFileNameJS,
+    },
+    ts: {
+      tailwindConfigTemplate: TAILWIND_CONFIG_NEXT_TS,
+      tailwindFileName: tailwindFileNameTS,
+      postcssConfigTemplate: POSTCSS_CONFIG_MJS,
+      postcssFileName: postcssFileNameMJS,
+    },
+  },
+  rn: {
+    js: {
+      tailwindConfigTemplate: NATIVEWIND_TAILWIND_CONFIG,
+      tailwindFileName: tailwindFileNameJS,
+    },
+    ts: {
+      tailwindConfigTemplate: NATIVEWIND_TAILWIND_CONFIG,
+      tailwindFileName: tailwindFileNameJS,
+    },
+  },
+};
