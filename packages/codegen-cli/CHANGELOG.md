@@ -1,5 +1,11 @@
 # @leocoder1/codegen-cli
 
+## 0.0.6
+
+### Patch Changes
+
+- 7217ef5: Style Fix for React, Next, Vue, Remix, React-Native
+
 ## 0.0.5
 
 ### Patch Changes
