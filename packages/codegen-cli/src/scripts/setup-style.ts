@@ -6,12 +6,13 @@ import {
   setTailwindOnReact,
   setTailwindOnVue,
 } from "./setup-tailwind";
+import { logger } from "../utils/logger";
 
 const cwd = process.cwd();
 
 type FrameworkStyleMap = {
   [framework: string]: {
-    [style: string]: (rootDir: string, variant?: string) => Promise<void>;
+    [style: string]: (rootDir: string, variant: string) => Promise<void>;
   };
 };
 
@@ -49,6 +50,6 @@ export const setupStyle = async (
 
     await setStyle(rootDir, variant);
   } catch (error) {
-    console.log("error in setting style: ", error);
+    logger.error("error in setting style: ", error);
   }
 };

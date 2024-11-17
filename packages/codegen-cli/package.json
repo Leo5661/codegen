@@ -37,9 +37,9 @@
     "bugs": {
         "url": "https://github.com/Leo5661/codegen/issues"
     },
-    "homepage": "https://codegen-beta.vercel.app/docs/introduction",
+    "homepage": "https://codegen-beta.vercel.app",
     "scripts": {
-        "link-pkg": "pnpm unlink --global codegen-cli && pnpm link --global",
+        "link-pkg": "pnpm unlink --global @leocoder1/codegen-cli && pnpm link --global",
         "clean": "rimraf dist",
         "typecheck": "tsc --noEmit",
         "dev": "tsup --watch",
@@ -63,9 +63,9 @@
         "@codegen/typescript-config": "workspace:*",
         "@types/figlet": "^1.5.8",
         "@types/fs-extra": "^11.0.4",
-        "@types/node": "^20.11.24",
+        "@types/node": "^22.9.0",
         "rimraf": "^6.0.1",
-        "tsup": "^6.3.0",
+        "tsup": "^6.7.0",
         "typescript": "^5.6.2"
     }
 }

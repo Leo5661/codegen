@@ -1,3 +1,4 @@
+import { debug } from "node:console";
 import pc from "picocolors";
 
 export const logger = {
@@ -15,5 +16,9 @@ export const logger = {
   },
   lineBreak() {
     console.log("");
+  },
+
+  d(...args: unknown[]) {
+    console.log(pc.bgMagenta("debug: "), ...args);
   },
 };

@@ -1,20 +1,16 @@
 import { Command } from "commander";
 import * as promt from "@clack/prompts";
-import { setTimeout } from "node:timers/promises";
 import pc from "picocolors";
-import { z } from "zod";
 import { Header } from "@/src/header";
 import { isValidPackageName } from "../utils/is-valid-package-name";
 import {
   databaseList,
   DatabaseType,
-  Framework,
   frameworkList,
   ormList,
   ORMType,
   styleList,
   StyleProps,
-  templates,
   typeOfFramework,
   variantList,
 } from "../utils/template";
@@ -57,23 +53,23 @@ export async function runInit() {
       framework: ({ results }) =>
         promt.select({
           message: `🛠️ Which framework do you want to use for ${pc.italic(pc.cyan(results.projectName))}?`,
-          initialValue: "Nextjs",
+          initialValue: "next",
           options: frameworkList(),
         }),
       variant: ({ results }) =>
         promt.select({
           message: `🔤 Choose variant for ${pc.italic(pc.cyan(results.projectName))}?`,
-          initialValue: "TS",
+          initialValue: "ts",
           options: variantList(results.framework as string),
         }),
       style: ({ results }) => {
         if (
           typeOfFramework(results.framework as string) !== "backend" &&
-          results.variant !== "default-next"
+          results.variant !== "default"
         ) {
           return promt.select({
             message: `🎨 What you want for style?`,
-            initialValue: "CSS",
+            initialValue: "tailwind",
             options: styleList(results.framework as string),
           });
         }
