@@ -1,10 +1,30 @@
 {
   "name": "template-node-js",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Node.js Template by Codegen 🤖 with Express using JavaScript, along with Prettier, ESLint, Nodemon, and Jest for testing.",
+  "main": "./src/index.js",
+ "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "5.0.1",
+    "dotenv": "^16.3.1",
+    "helmet": "8.0.0",
+    "morgan": "^1.10.0",
+    "body-parser": "2.0.2"
+  },  
+  "devDependencies": {
+    "eslint": "9.15.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "supertest": "7.0.0"
   },
   "keywords": [],
   "author": "",
