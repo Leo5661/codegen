@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */                               
+    "lib": ["esnext"],                                      
+
+    /* Modules */                            
+    "rootDir": "src",                                    
+    "isolatedModules": true,                     
+
+    /* JavaScript Support */
+    "allowJs": true,                                    
+    "outDir": "build",                                   
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    /* Type Checking */
+    "strict": true,                                      
+    "noImplicitAny": true,                               
+    "skipLibCheck": true,
+    "noEmit": true,  
+    "paths": {
+      "@/*": ["./*"]
+    },
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
+}

@@ -40,7 +40,7 @@ export const generatePackage = async (results: PromtConfig) => {
   const files = fs.readdirSync(templateDir);
 
   for (const file of files.filter((f) => f !== "package.json")) {
-    writeFiles({
+    await writeFiles({
       src: templateDir,
       root,
       fileName: file,

@@ -51,7 +51,7 @@ Before you start contributing, ensure that you have idea of:
     * For doc site visit ``` http://localhost:3000 ```
     * For local CLI to use run:
         ```sh
-        pnpm dlx turbo link-pkg --filter=@codegen/cli
+        pnpm dlx turbo link-pkg --filter=@leocoder1/codegen-cli
         ```
     * After linking package to local store use:
         ```sh
