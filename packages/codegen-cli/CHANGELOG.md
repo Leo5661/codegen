@@ -1,5 +1,11 @@
 # @leocoder1/codegen-cli
 
+## 0.0.7
+
+### Patch Changes
+
+- a293b1e: Added Node.js Express server with Test using jest.
+
 ## 0.0.6
 
 ### Patch Changes
