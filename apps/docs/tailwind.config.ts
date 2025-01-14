@@ -2,6 +2,7 @@
 import { createPreset } from "fumadocs-ui/tailwind-plugin";
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 const config: Config = {
   content: [
@@ -78,7 +79,18 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, addVariablesForColors],
 };
 
 export default config;
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
