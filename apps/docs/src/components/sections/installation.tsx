@@ -37,11 +37,13 @@ function InstallationSection() {
                 <Terminal className="h-4 w-4 text-primary" />
               </div>
               <div className="space-y-2 flex flex-col items-start">
-                <div className="font-semibold">{step.title}</div>
+                <div className="font-semibold text-foreground">
+                  {step.title}
+                </div>
                 <p className="sm:text-sm text-xs text-muted-foreground text-start">
                   {step.description}
                 </p>
-                <pre className="mt-2 sm:px-4 sm:py-2 px-2 py-1 rounded-lg bg-muted/50 font-light text-sm">
+                <pre className="mt-2 sm:px-4 sm:py-2 px-2 py-1 rounded-lg bg-muted/50 font-light text-sm text-muted-foreground">
                   {step.command}
                 </pre>
               </div>

@@ -18,7 +18,7 @@ function HeroSection() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("npm install -g codegen-cli");
+    navigator.clipboard.writeText("pnpm install -g @leocoder1/codegen-cli");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -58,7 +58,7 @@ function HeroSection() {
 
         <div className="flex flex-row items-center justify-evenly sm:space-x-4 space-x-1 border rounded-md sm:px-4 px-1 mt-8">
           <DollarSign size={15} strokeWidth={1.5} />
-          <div className="sm:font-semibold font-light text-xs sm:text-sm text-muted-foreground">
+          <div className="sm:font-normal font-light text-xs sm:text-sm text-muted-foreground">
             pnpm install -g @leocoder1/codegen-cli
           </div>
           <Button
@@ -69,13 +69,13 @@ function HeroSection() {
             {copied ? (
               <CheckCheck className="w-2 h-2  sm:h-4 sm:w-4 text-green-500" />
             ) : (
-              <Copy className="w-2 h-2  sm:h-4 sm:w-4" />
+              <Copy className="w-2 h-2  sm:h-4 sm:w-4 text-foreground" />
             )}
           </Button>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
           <Button
-            className="w-full sm:w-auto min-w-[200px] bg-gradient-to-r from-sky-500 to-indigo-500"
+            className="w-full sm:w-auto min-w-[200px] bg-gradient-to-r  from-indigo-500 to-cyan-500"
             asChild
           >
             <Link href="/docs/introduction">Get Started</Link>

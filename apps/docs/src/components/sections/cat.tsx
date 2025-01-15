@@ -21,7 +21,10 @@ function CATSection() {
       <div className="flex sm:flex-row flex-col gap-4 sm:gap-0 items-center mt-8 justify-evenly w-full px-20">
         <Card className="relative rounded border sm:px-10 sm:py-8 p-4 min-w-[300px] min-h-[300px]">
           <CardContent className="p-4 flex flex-col items-center text-center space-y-4">
-            <Rocket className="h-8 w-8 text-primary" />
+            <Rocket
+              className="h-8 w-8 text-muted-foreground"
+              strokeWidth="1.5"
+            />
             <h3 className="text-lg font-semibold">Early Adopter</h3>
             <p className="text-muted-foreground text-sm max-w-80">
               Be among the first to use and provide feedback on CodeGen. Your
@@ -32,7 +35,7 @@ function CATSection() {
               variant={"outline"}
               className="inline-flex items-center justify-center"
             >
-              <Link href="/get-started">
+              <Link href="/docs/introduction">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -43,7 +46,10 @@ function CATSection() {
 
         <Card className="relative rounded border sm:px-10 sm:py-8 p-4 min-w-[300px] min-h-[300px]">
           <CardContent className="p-4 flex flex-col items-center text-center space-y-4">
-            <GitHubLogoIcon className="h-8 w-8 text-primary" />
+            <GitHubLogoIcon
+              className="h-8 w-8 text-muted-foreground"
+              strokeWidth={1.5}
+            />
             <div className="text-lg font-semibold">Contribute on GitHub</div>
             <p className="text-muted-foreground text-sm max-w-80">
               Help build CodeGen from the ground up. Your contributions, big or
@@ -65,7 +71,10 @@ function CATSection() {
 
         <Card className="relative rounded border sm:px-10 sm:py-8 p-4 min-w-[300px] min-h-[300px]">
           <CardContent className="p-4 flex flex-col items-center text-center space-y-4">
-            <Lightbulb className="h-8 w-8 text-primary" />
+            <Lightbulb
+              className="h-8 w-8 text-muted-foreground"
+              strokeWidth={1.5}
+            />
             <div className="text-lg font-semibold">Shape the Future</div>
             <p className="text-muted-foreground text-sm max-w-80">
               Share your ideas and help define the roadmap for CodeGen. Your
@@ -86,20 +95,23 @@ function CATSection() {
         </Card>
       </div>
 
-      {/* <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 my-10" /> */}
-
       <div className="flex flex-col items-center mt-10 sm:mt-20 z-10">
         <p className="text-muted-foreground mb-4 text-center">
           Join the growing CodeGen community and be part of something
           extraordinary from the start
         </p>
+
         <Button
           asChild
           size="lg"
           variant={"outline"}
-          className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+          className="mt-6 sm:mt-8 ring-0 focus:ring-0 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#151225,45%,#23495f,55%,#151225)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
         >
-          <Link href="/join">
+          <Link
+            href="https://discord.gg/Ynct5xen"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <DiscordLogoIcon className="mr-2 h-10 w-10 animate-pulse " />
             Join the CodeGen Movement
           </Link>
@@ -110,8 +122,3 @@ function CATSection() {
 }
 
 export default CATSection;
-
-// // Button code
-// <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-//   Shimmer
-// </button>

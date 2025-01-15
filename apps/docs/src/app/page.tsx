@@ -11,13 +11,13 @@ export default function Page(): JSX.Element {
       <Header />
       {/* <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 " /> */}
       <HeroSection />
-      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 my-10" />
+      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-foreground/20 to-neutral-200/0 my-10" />
       <FeatureSection />
-      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 my-10" />
+      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-foreground/20 to-neutral-200/0 my-10" />
       <InstallationSection />
-      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 my-10" />
+      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-foreground/20 to-neutral-200/0 my-10" />
       <CATSection />
-      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 my-10" />
+      <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-foreground/20 to-neutral-200/0 my-10" />
       <Footer />
     </main>
   );
