@@ -1,6 +1,12 @@
 "use client";
 
-import { CheckCheck, Copy, DollarSign, Terminal } from "lucide-react";
+import {
+  CheckCheck,
+  Copy,
+  DollarSign,
+  MoveRight,
+  Terminal,
+} from "lucide-react";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { SparklesCore } from "../ui/sparkles";
@@ -68,7 +74,10 @@ function HeroSection() {
           </Button>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-          <Button className="w-full sm:w-auto min-w-[200px]" asChild>
+          <Button
+            className="w-full sm:w-auto min-w-[200px] bg-gradient-to-r from-sky-500 to-indigo-500"
+            asChild
+          >
             <Link href="/docs/introduction">Get Started</Link>
           </Button>
           <GitHubStarButton repo="leocoder1/codegen-cli" />

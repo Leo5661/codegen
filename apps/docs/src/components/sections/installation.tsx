@@ -25,23 +25,23 @@ function InstallationSection() {
       <div className="mt-4 text-sm sm:text-base max-w-[320px] text-muted-foreground md:text-lg lg:text-xl sm:max-w-[600px] text-center mb-8 sm:mb-12 md:mb-24">
         Quick installation process with npm or yarn. Start code instantly.
       </div>
-      <div className="grid gap-8 max-w-3xl mx-auto">
+      <div className="flex flex-col items-center gap-8 max-w-3xl">
         {steps.map((step, index) => (
           <HoverBorderGradient
-            className="p-6 bg-background text-foreground/80 "
+            className="p-6 bg-background"
             key={index}
             containerClassName="rounded-lg"
           >
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 w-full">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/5">
                 <Terminal className="h-4 w-4 text-primary" />
               </div>
               <div className="space-y-2 flex flex-col items-start">
                 <div className="font-semibold">{step.title}</div>
-                <p className="text-sm text-muted-foreground">
+                <p className="sm:text-sm text-xs text-muted-foreground text-start">
                   {step.description}
                 </p>
-                <pre className="mt-2 p-2 rounded-lg bg-muted/50 font-mono text-sm">
+                <pre className="mt-2 sm:px-4 sm:py-2 px-2 py-1 rounded-lg bg-muted/50 font-light text-sm">
                   {step.command}
                 </pre>
               </div>
