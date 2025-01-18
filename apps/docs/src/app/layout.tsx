@@ -26,10 +26,12 @@ export default function RootLayout({
             defaultTheme: "dark",
           }}
         >
-          <Banner  variant="rainbow" changeLayout={true}>CodeGen Docs are under development and will be available soon</Banner>
+          <Banner id="banner" variant="rainbow" changeLayout={true}>
+            CodeGen Docs are under development and will be available soon
+          </Banner>
           {children}
         </RootProvider>
-        </body>
+      </body>
     </html>
   );
 }
