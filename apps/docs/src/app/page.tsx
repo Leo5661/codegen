@@ -8,7 +8,7 @@ import InstallationSection from "../components/sections/installation";
 
 export default function Page(): JSX.Element {
   return (
-    <main className="flex flex-col min-h-screen bg-background">
+    <main className="flex flex-col min-h-screen bg-background relative border">
       <Header />
       {/* <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-200/30 to-neutral-200/0 " /> */}
       <HeroSection />

@@ -8,6 +8,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { Button } from "../ui/button";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { SparklesCore } from "../ui/sparkles";
 import TechStack from "../tech-stack";
@@ -44,19 +45,41 @@ function HeroSection() {
       </div>
 
       <div className="flex flex-col items-center justify-center grow z-10 ">
-        <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs sm:text-sm font-light">
-          <Terminal className="mr-2 h-3.5 w-3.5" />
-          <span>The Universal CLI for Modern Development</span>
-        </div>
-        <div className="text-3xl font-bold tracking-tighter text-center sm:text-5xl md:text-6xl lg:text-7xl sm:max-w-3xl max-w-xs  to-muted-foreground mt-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-4"
+        >
+          <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs sm:text-sm font-light">
+            <Terminal className="mr-2 h-3.5 w-3.5" />
+            <span>The Universal CLI for Modern Development</span>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-3xl font-bold tracking-tighter text-center sm:text-5xl md:text-6xl lg:text-7xl sm:max-w-3xl max-w-xs  to-muted-foreground mt-4"
+        >
           Build Faster with Automated Workflows
-        </div>
-        <p className="sm:max-w-[600px] max-w-[320px] mt-4 text-sm sm:text-base text-muted-foreground font-light lg:text-lg md:max-w-[800px] text-center">
+        </motion.div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="sm:max-w-[600px] max-w-[320px] mt-4 text-sm sm:text-base text-muted-foreground font-light lg:text-lg md:max-w-[800px] text-center"
+        >
           Generate tailored templates for TypeScript and JavaScript frameworks.
           Boost your productivity with customizable scaffolding.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-row items-center justify-evenly sm:space-x-4 space-x-1 border rounded-md sm:px-4 px-1 mt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-row items-center justify-evenly sm:space-x-4 space-x-1 border rounded-md sm:px-4 px-1 mt-8"
+        >
           <DollarSign size={15} strokeWidth={1.5} />
           <div className="sm:font-normal font-light text-xs sm:text-sm text-muted-foreground">
             pnpm install -g @leocoder1/codegen-cli
@@ -72,8 +95,13 @@ function HeroSection() {
               <Copy className="w-2 h-2  sm:h-4 sm:w-4 text-foreground" />
             )}
           </Button>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center gap-4 mt-4"
+        >
           <Button
             className="w-full sm:w-auto min-w-[200px] bg-gradient-to-r  from-indigo-500 to-cyan-500"
             asChild
@@ -81,19 +109,26 @@ function HeroSection() {
             <Link href="/docs/introduction">Get Started</Link>
           </Button>
           <GitHubStarButton repo="leocoder1/codegen-cli" />
-        </div>
+        </motion.div>
 
-        <TechStack
-          className="mt-8"
-          technologies={[
-            "nextjs",
-            "typescript",
-            "node",
-            "tailwindcss",
-            "framermotion",
-            "shadcn",
-          ]}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex flex-col sm:flex-row items-center gap-4 mt-4"
+        >
+          <TechStack
+            className="mt-8"
+            technologies={[
+              "nextjs",
+              "typescript",
+              "node",
+              "tailwindcss",
+              "framermotion",
+              "shadcn",
+            ]}
+          />
+        </motion.div>
       </div>
     </div>
   );

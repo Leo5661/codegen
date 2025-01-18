@@ -17,9 +17,9 @@ export function Header() {
         >
           Documentation
         </Link>
-        <Link
+        {/* <Link
           className="text-sm text-muted-foreground hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r  from-indigo-500 to-cyan-300 transition-colors flex items-center"
-          href="/"
+          href="/roadmap"
         >
           Roadmap
         </Link>
@@ -28,7 +28,7 @@ export function Header() {
           href="/"
         >
           Lab
-        </Link>
+        </Link> */}
         <div className="flex flex-row items-center">
           <Button
             asChild

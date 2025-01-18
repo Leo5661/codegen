@@ -89,3 +89,94 @@ export const FAQ_LIST: FAQ_Item[] = [
       "We strive to keep CodeGen up-to-date with the latest web development trends and framework updates. Major updates are typically released quarterly, with minor updates and bug fixes rolled out more frequently.",
   },
 ];
+
+//Roadmap
+
+export type Priority = "all" | "high" | "medium";
+
+export interface RoadmapItemType {
+  title: string;
+  description: string;
+  priority: "high" | "medium";
+  date: {
+    type: "expected" | "completed";
+    value: string;
+  };
+  status: "planned" | "in-progress" | "complete";
+}
+
+export const RoadmapItemsList: RoadmapItemType[] = [
+  {
+    title: "Lemonsqueezy Integration",
+    description:
+      "Seamless payment processing and subscription management system.",
+    priority: "high",
+    date: {
+      type: "expected",
+      value: "Q1 2025",
+    },
+    status: "planned",
+  },
+  {
+    title: "Teams Integration",
+    description: "Multi-user workspaces with role-based access control.",
+    priority: "high",
+    date: {
+      type: "expected",
+      value: "Q1 2025",
+    },
+    status: "planned",
+  },
+  {
+    title: "Magic Link Login",
+    description: "Passwordless authentication with secure magic links.",
+    priority: "high",
+    date: {
+      type: "expected",
+      value: "Q1 2025",
+    },
+    status: "planned",
+  },
+  {
+    title: "Full Email Support",
+    description:
+      "Comprehensive email system with templates, notifications, and transactional emails.",
+    priority: "high",
+    date: {
+      type: "expected",
+      value: "January 2025",
+    },
+    status: "in-progress",
+  },
+  {
+    title: "Security Notifications",
+    description:
+      "Real-time security alerts and comprehensive notification system.",
+    priority: "high",
+    date: {
+      type: "expected",
+      value: "February 2025",
+    },
+    status: "in-progress",
+  },
+  {
+    title: "Initial Launch",
+    description: "First release of CodeGen with core functionality.",
+    priority: "high",
+    date: {
+      type: "completed",
+      value: "December 2024",
+    },
+    status: "complete",
+  },
+  {
+    title: "Dark Mode",
+    description: "System-wide dark mode support.",
+    priority: "medium",
+    date: {
+      type: "completed",
+      value: "December 2024",
+    },
+    status: "complete",
+  },
+];
