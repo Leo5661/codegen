@@ -51,7 +51,7 @@ function HeroSection() {
         <div className="text-3xl font-bold tracking-tighter text-center sm:text-5xl md:text-6xl lg:text-7xl sm:max-w-3xl max-w-xs  to-muted-foreground mt-4">
           Build Faster with Automated Workflows
         </div>
-        <p className="sm:max-w-[700px] max-w-[300px] text-muted-foreground text-xs sm:text-base md:text-lg text-center mt-4">
+        <p className="sm:max-w-[600px] max-w-[320px] mt-4 text-sm sm:text-base text-muted-foreground font-light lg:text-lg md:max-w-[800px] text-center">
           Generate tailored templates for TypeScript and JavaScript frameworks.
           Boost your productivity with customizable scaffolding.
         </p>
