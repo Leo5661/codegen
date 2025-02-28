@@ -1,5 +1,11 @@
 # @leocoder1/codegen-cli
 
+## 0.0.8
+
+### Patch Changes
+
+- 7ca0115: update developer info
+
 ## 0.0.7
 
 ### Patch Changes
