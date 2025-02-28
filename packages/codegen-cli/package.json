@@ -1,71 +1,71 @@
 {
-    "name": "@leocoder1/codegen-cli",
-    "version": "0.0.7",
-    "description": "Universal CLI for Tailored Templates in TS/JS Frameworks.",
-    "publishConfig": {
-        "provenance": true,
-        "access": "public"
-    },
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "files": [
-        "dist",
-        "templates/*",
-        "README.md"
-    ],
-    "bin": {
-        "cgen": "./dist/index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Leo5661/codegen.git",
-        "directory": "packages/codegen-cli"
-    },
-    "keywords": [
-        "codegen",
-        "cli",
-        "template",
-        "code generator"
-    ],
-    "author": {
-        "name": "Rahul Singh",
-        "url": "https://x.com/Leo_5661"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Leo5661/codegen/issues"
-    },
-    "homepage": "https://codegen-beta.vercel.app",
-    "scripts": {
-        "link-pkg": "pnpm unlink --global @leocoder1/codegen-cli && pnpm link --global",
-        "clean": "rimraf dist",
-        "typecheck": "tsc --noEmit",
-        "dev": "tsup --watch",
-        "build": "tsup",
-        "lint": "tsc"
-    },
-    "dependencies": {
-        "@clack/prompts": "^0.7.0",
-        "chalk": "^5.3.0",
-        "commander": "^12.1.0",
-        "cosmiconfig": "^9.0.0",
-        "execa": "^9.4.0",
-        "figlet": "^1.7.0",
-        "fs-extra": "^11.2.0",
-        "picocolors": "^1.1.0",
-        "type-fest": "^4.26.1",
-        "zod": "^3.23.8"
-    },
-    "devDependencies": {
-        "@codegen/eslint-config": "workspace:*",
-        "@codegen/typescript-config": "workspace:*",
-        "@types/figlet": "^1.5.8",
-        "@types/fs-extra": "^11.0.4",
-        "@types/node": "^22.9.0",
-        "rimraf": "^6.0.1",
-        "tsup": "^6.7.0",
-        "typescript": "^5.6.2"
-    }
+  "name": "@leocoder1/codegen-cli",
+  "version": "0.0.7",
+  "description": "Universal CLI for Tailored Templates in TS/JS Frameworks.",
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "templates/*",
+    "README.md"
+  ],
+  "bin": {
+    "cgen": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leo5661/codegen.git",
+    "directory": "packages/codegen-cli"
+  },
+  "keywords": [
+    "codegen",
+    "cli",
+    "template",
+    "code generator"
+  ],
+  "author": {
+    "name": "Rahul Singh",
+    "url": "https://x.com/_leocoder_"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leo5661/codegen/issues"
+  },
+  "homepage": "https://codegen-beta.vercel.app",
+  "scripts": {
+    "link-pkg": "pnpm unlink --global @leocoder1/codegen-cli && pnpm link --global",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "tsc"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "cosmiconfig": "^9.0.0",
+    "execa": "^9.4.0",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "picocolors": "^1.1.0",
+    "type-fest": "^4.26.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@codegen/eslint-config": "workspace:*",
+    "@codegen/typescript-config": "workspace:*",
+    "@types/figlet": "^1.5.8",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.9.0",
+    "rimraf": "^6.0.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.6.2"
+  }
 }
