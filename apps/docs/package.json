@@ -20,6 +20,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.7.1",
     "@types/mdx": "^2.0.13",
+    "@vercel/analytics": "^1.5.0",
     "@vercel/og": "^0.6.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
