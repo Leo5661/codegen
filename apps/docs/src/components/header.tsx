@@ -36,7 +36,7 @@ export function Header() {
             className="bg-transparent text-muted-foreground hover:bg-foreground/10"
           >
             <Link
-              href="https://discord.gg/Ynct5xen"
+              href={process.env.NEXT_PUBLIC_DISCORD_URL as string}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -49,7 +49,7 @@ export function Header() {
             className="bg-transparent text-muted-foreground hover:bg-foreground/10"
           >
             <Link
-              href="https://github.com/Leo5661/codegen"
+              href={process.env.NEXT_PUBLIC_GITHUB_URL as string}
               target="_blank"
               rel="noopener noreferrer"
             >

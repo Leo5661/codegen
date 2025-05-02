@@ -103,7 +103,7 @@ function HeroSection() {
           className="flex flex-col sm:flex-row items-center gap-4 mt-4"
         >
           <Button
-            className="w-full sm:w-auto min-w-[200px] bg-gradient-to-r  from-indigo-500 to-cyan-500"
+            className="w-full sm:w-auto min-w-[200px] bg-gradient-to-r  from-indigo-500 to-cyan-600"
             asChild
           >
             <Link href="/docs/introduction">Get Started</Link>

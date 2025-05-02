@@ -27,7 +27,7 @@ export default function RootLayout({
           }}
         >
           <Banner id="banner" variant="rainbow" changeLayout={true}>
-            CodeGen Docs are under development and will be available soon
+            CodeGen is under development and will be available soon
           </Banner>
           {children}
         </RootProvider>

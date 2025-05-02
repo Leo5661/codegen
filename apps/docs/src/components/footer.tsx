@@ -8,7 +8,12 @@ function Footer() {
       <div className="text-sm text-muted-foreground">
         Made with ❤️ by{" "}
         <span className="hover:underline hover:underline-offset-4">
-          <Link href="https://github.com/Leo5661">Rahul Singh (leocoder)</Link>
+          <Link
+            href="https://x.com/_leocoder_"
+            className="text-foreground/70 font-semibold"
+          >
+            @_leocoder_
+          </Link>
         </span>
       </div>
     </div>

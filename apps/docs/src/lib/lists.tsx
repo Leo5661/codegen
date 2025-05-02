@@ -1,6 +1,6 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Lightbulb, Rocket } from "lucide-react";
-import { syncBuiltinESMExports } from "node:module";
+
 import { ReactElement } from "react";
 
 export interface CAT_ITEM {
@@ -32,17 +32,17 @@ export const CAT_LIST: CAT_ITEM[] = [
     title: "Contribute on GitHub",
     description:
       "Help build CodeGen from the ground up. Your contributions, big or small, will be foundational to the project.",
-    link: "https://github.com/Leo5661/codegen",
+    link: process.env.NEXT_PUBLIC_GITHUB_URL as string,
     linkText: "View Repository",
   },
   {
     icon: (
       <Lightbulb className="h-8 w-8 text-muted-foreground" strokeWidth="1.5" />
     ),
-    title: "Shape the Future",
+    title: "Participate in Roadmap",
     description:
       "Share your ideas and help define the roadmap for CodeGen. Your vision can become a core feature.",
-    link: "https://github.com/Leo5661/codegen",
+    link: process.env.NEXT_PUBLIC_DISCORD_URL as string,
     linkText: "View Roadmap",
   },
 ];
@@ -68,11 +68,11 @@ export const FAQ_LIST: FAQ_Item[] = [
     answer:
       "Currently, CodeGen is not an AI. It uses predefined templates and user inputs to generate code. However, we are exploring AI integration for future versions to provide more intelligent and context-aware code generation.",
   },
-  {
-    question: "Is CodeGen free to use?",
-    answer:
-      "CodeGen is free to use without AI features. In the future, if AI capabilities are introduced, there may be paid tiers for those advanced features. We're committed to maintaining a free tier for basic functionality.",
-  },
+  // {
+  //   question: "Is CodeGen free to use?",
+  //   answer:
+  //     "CodeGen is free to use without AI features. In the future, if AI capabilities are introduced, there may be paid tiers for those advanced features. We're committed to maintaining a free tier for basic functionality.",
+  // },
   {
     question: "Is CodeGen only available as a CLI?",
     answer:
@@ -83,11 +83,11 @@ export const FAQ_LIST: FAQ_Item[] = [
     answer:
       "We welcome contributions from the community. You can contribute by submitting pull requests, reporting bugs, or suggesting new features on our GitHub repository.",
   },
-  {
-    question: "How often is CodeGen updated?",
-    answer:
-      "We strive to keep CodeGen up-to-date with the latest web development trends and framework updates. Major updates are typically released quarterly, with minor updates and bug fixes rolled out more frequently.",
-  },
+  // {
+  //   question: "How often is CodeGen updated?",
+  //   answer:
+  //     "We strive to keep CodeGen up-to-date with the latest web development trends and framework updates. Major updates are typically released quarterly, with minor updates and bug fixes rolled out more frequently.",
+  // },
 ];
 
 //Roadmap

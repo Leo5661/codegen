@@ -48,8 +48,7 @@ function CATSection() {
 
       <div className="flex flex-col items-center mt-10 sm:mt-20 z-10">
         <p className="text-muted-foreground mb-4 text-center">
-          Join the growing CodeGen community and be part of something
-          extraordinary from the start
+          Need CodeGen Help or Want to Collaborate? Join Our Discord!
         </p>
 
         <Button
@@ -59,7 +58,7 @@ function CATSection() {
           className="mt-6 sm:mt-8 ring-0 focus:ring-0 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#151225,45%,#23495f,55%,#151225)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
         >
           <Link
-            href="https://discord.gg/Ynct5xen"
+            href={process.env.NEXT_PUBLIC_DISCORD_URL as string}
             target="_blank"
             rel="noopener noreferrer"
           >
