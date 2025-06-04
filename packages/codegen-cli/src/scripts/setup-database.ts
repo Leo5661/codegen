@@ -80,7 +80,7 @@ async function setupWithPrisma(
     if (database === "Postgres") {
       await execa(
         "npx",
-        ["prisma", "init", "--datasource-provider", "mongodb"],
+        ["prisma", "init", "--datasource-provider", "postgresql"],
         {
           cwd: rootDir,
         },
