@@ -1,5 +1,11 @@
 # @leocoder1/codegen-cli
 
+## 0.0.9
+
+### Patch Changes
+
+- 369b23b: Fix postgresql provider for prisma
+
 ## 0.0.8
 
 ### Patch Changes
